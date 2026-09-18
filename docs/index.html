@@ -59,23 +59,41 @@
 <!-- ═══ MAIN CONTENT (offset for fixed header) ═══════════════════════════ -->
 <main id="main-content">
 
-<!-- ═══ HERO ═════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-badge">
-    IBM Bob · FLIGHT400 Lab
+<!-- ═══ PAGE HEADER ═══════════════════════════════════════════════════════ -->
+<div class="ibm-page-header">
+  <div class="ibm-page-header-inner">
+
+    <p class="ibm-page-header-eyebrow">IBM Bob · FLIGHT400 Lab</p>
+
+    <h1 class="ibm-page-header-title">
+      Modernize IBM i<br>with AI-assisted tooling.
+    </h1>
+
+    <p class="ibm-page-header-desc">
+      Hands-on lab exercises using IBM Bob IDE on a real FLIGHT400 IBM i application.
+      Pick your track and work at your own pace.
+    </p>
+
+    <div class="ibm-page-header-actions">
+      <button class="ibm-btn ibm-btn--primary" id="hero-cta-btn" type="button">
+        Pick Your Track
+        <!-- ArrowDown 16 — pinned right inside button -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+             viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 4v20M6 14l10 10 10-10" stroke="currentColor" stroke-width="2"
+                fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
   </div>
-  <img src="img/flight400.png" alt="FLIGHT400 application screenshot" class="hero-app-screenshot" />
-  <h1>
-    <span class="word-mask"><span class="word-inner" style="--d:200ms">Modernize</span></span>&#32;<span class="word-mask"><span class="word-inner" style="--d:280ms">IBM i</span></span>&#32;<span class="word-mask"><span class="word-inner" style="--d:360ms">with</span></span><br/><span class="word-mask"><span class="word-inner word-gold" style="--d:440ms">AI-assisted</span></span>&#32;<span class="word-mask"><span class="word-inner" style="--d:520ms">tooling.</span></span>
-  </h1>
-  <p>Hands-on lab exercises using IBM Bob IDE on a real FLIGHT400 IBM i application. Pick your track and work at your own pace.</p>
-  <button class="hero-cta" id="hero-cta-btn">
-    Pick Your Track
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-</section>
+
+  <!-- Decorative screenshot — right side, partially cropped on small screens -->
+  <img src="img/flight400.png"
+       alt="FLIGHT400 IBM i application screenshot"
+       class="ibm-page-header-img"
+       aria-hidden="true" />
+</div>
 
 <!-- ═══ NEW-TO-BOB MODAL ══════════════════════════════════ -->
 <div class="ntb-overlay" id="ntb-overlay" role="dialog" aria-modal="true" aria-labelledby="ntb-title">

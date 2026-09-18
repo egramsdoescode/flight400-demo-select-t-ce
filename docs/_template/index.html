@@ -65,29 +65,45 @@
 <!-- ═══ MAIN CONTENT (offset for fixed header) ═══════════════════════════ -->
 <main id="main-content">
 
-<!-- ═══ HERO ═════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-badge" id="hero-badge">
-    <!-- Populated by config.js -->
+<!-- ═══ PAGE HEADER ═══════════════════════════════════════════════════════ -->
+<div class="ibm-page-header">
+  <div class="ibm-page-header-inner">
+
+    <!-- Populated by config.js inline script below -->
+    <p class="ibm-page-header-eyebrow" id="hero-badge"></p>
+    <h1 class="ibm-page-header-title" id="hero-title"></h1>
+    <p class="ibm-page-header-desc" id="hero-subtitle">
+      Hands-on IBM i modernization lab exercises using IBM Bob IDE.
+      Pick your track and work at your own pace.
+    </p>
+
+    <div class="ibm-page-header-actions">
+      <button class="ibm-btn ibm-btn--primary" id="hero-cta-btn" type="button">
+        Pick Your Track
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+             viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 4v20M6 14l10 10 10-10" stroke="currentColor" stroke-width="2"
+                fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <!-- Agenda button — shown only when config.agendaItems is set -->
+      <button class="ibm-btn ibm-btn--ghost" id="agenda-btn"
+              style="display:none" aria-haspopup="dialog" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+             viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M26 4h-4V2h-2v2H12V2h-2v2H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 22H6V12h20zm0-14H6V6h4v2h2V6h8v2h2V6h4z"/>
+        </svg>
+        Event Agenda
+      </button>
+    </div>
+
   </div>
-  <img src="img/flight400.png" alt="FLIGHT400 application screenshot" class="hero-app-screenshot" />
-  <h1 id="hero-title"><!-- Populated by config.js --></h1>
-  <p id="hero-subtitle">Hands-on IBM i modernization lab exercises using IBM Bob IDE. Pick your track and work at your own pace.</p>
-  <div class="hero-pill-row">
-    <button class="agenda-btn" id="agenda-btn" style="display:none" aria-haspopup="dialog">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
-      </svg>
-      Event Agenda
-    </button>
-  </div>
-  <button class="hero-cta" id="hero-cta-btn">
-    Pick Your Track
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-</section>
+
+  <img src="img/flight400.png"
+       alt="FLIGHT400 IBM i application screenshot"
+       class="ibm-page-header-img"
+       aria-hidden="true" />
+</div>
 
 <!-- ═══ NEW-TO-BOB MODAL ══════════════════════════════════ -->
 <div class="ntb-overlay" id="ntb-overlay" role="dialog" aria-modal="true" aria-labelledby="ntb-title">
@@ -213,22 +229,17 @@
   if (cfg.accentColor)  document.documentElement.style.setProperty('--accent',   cfg.accentColor);
   if (cfg.primaryColor) document.documentElement.style.setProperty('--ibm-blue', cfg.primaryColor);
 
-  // Hero badge
+  // Hero badge (eyebrow)
   var badge = document.getElementById('hero-badge');
   if (badge) {
     badge.insertAdjacentHTML('beforeend',
       esc(cfg.companyName || 'IBM Bob') + (cfg.eventName ? ' &middot; ' + esc(cfg.eventName) : ''));
   }
 
-  // Hero title
+  // Hero title — plain text, no word-mask animation
   var title = document.getElementById('hero-title');
   if (title) {
-    title.innerHTML =
-      '<span class="word-mask"><span class="word-inner" style="--d:200ms">FLIGHT400</span></span>&#32;' +
-      '<span class="word-mask"><span class="word-inner" style="--d:300ms">IBM i</span></span>&#32;' +
-      '<span class="word-mask"><span class="word-inner" style="--d:400ms">Lab</span></span><br/>' +
-      '<span class="word-mask"><span class="word-inner word-gold" style="--d:500ms">' +
-        esc(cfg.eventName || 'Modernization Lab') + '</span></span>';
+    title.textContent = 'FLIGHT400 IBM i Lab \u2014 ' + (cfg.eventName || 'Modernization Lab');
   }
 
   // Page title

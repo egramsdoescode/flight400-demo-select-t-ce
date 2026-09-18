@@ -293,190 +293,196 @@ pre, code, kbd, samp {
   font-size: 0.875em;
 }
 
-/* ── HERO ── */
-.hero {
-  position: relative; z-index: 1;
-  text-align: center;
-  padding: var(--cds-spacing-09) var(--cds-spacing-06) var(--cds-spacing-10);
-  max-width: 720px;
-  margin: 0 auto;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 50%;
-  transform: translateX(-50%);
-  width: min(600px, 90%); height: 1px;
-  background: var(--cds-border-subtle-01);
-}
+/* ── IBM PAGE HEADER ──────────────────────────────────────────────────────
+   Carbon Page Header pattern — left-aligned, Gray-100 theme.
+   Background uses $layer-01 (#262626) to lift off the $background body.    */
 
-/* Hero eyebrow tag — Carbon Tag style (flat, no border-radius) */
-.hero-badge {
-  display: inline-flex; align-items: center; gap: var(--cds-spacing-03);
-  border-left: 3px solid var(--cds-interactive);
+.ibm-page-header {
   background: var(--cds-layer-01);
-  border-radius: 0; padding: 4px var(--cds-spacing-04) 4px var(--cds-spacing-03);
-  font-size: 0.75rem; font-weight: 400; color: var(--cds-text-secondary);
-  letter-spacing: 0.02em;
-  margin-bottom: var(--cds-spacing-06);
-  opacity: 0;
-  animation: hero-fade-up 0.5s var(--cds-motion-entrance) 0.1s forwards;
+  border-bottom: 1px solid var(--cds-border-subtle-00);
+  position: relative;
+  overflow: hidden;
 }
 
-.hero-app-screenshot {
-  display: block;
-  max-width: min(480px, 90%);
-  width: 100%;
-  margin: 0 auto var(--cds-spacing-07);
-  border-radius: 2px;
-  border: 1px solid var(--cds-border-subtle-01);
-  opacity: 0;
-  animation: screenshot-fade 0.7s var(--cds-motion-standard) 0.15s forwards;
-}
-@keyframes screenshot-fade {
-  to { opacity: 1; }
+.ibm-page-header-inner {
+  max-width: 1312px;           /* Carbon 2xl breakpoint max content width */
+  margin: 0 auto;
+  padding: var(--cds-spacing-10) var(--cds-spacing-07) var(--cds-spacing-11);
+  position: relative;
+  z-index: 1;
 }
 
-/* Carbon $expressive-heading-05 */
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  line-height: 1.25;
+/* Eyebrow — Carbon $label-01: 0.75rem / 400 / 0.32px tracking */
+.ibm-page-header-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  text-transform: uppercase;
+  color: var(--cds-text-secondary);
+  margin-bottom: var(--cds-spacing-04);
+  font-family: var(--cds-font-family-sans);
+
+  /* Fade in — Carbon uses simple opacity, no translateY */
+  opacity: 0;
+  animation: ibm-fade-in 400ms var(--cds-motion-entrance) 100ms forwards;
+}
+
+/* Title — Carbon $expressive-heading-06: 42px / 300 weight / -0.64px tracking
+   IBM's "big headings are light weight" rule applies here.                   */
+.ibm-page-header-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.625rem);
+  font-weight: 300;
+  line-height: 1.199;
   letter-spacing: -0.01em;
-  margin-bottom: var(--cds-spacing-05);
-}
-.hero h1 .word-mask {
-  display: inline-block; overflow: hidden;
-  vertical-align: bottom;
-  padding-bottom: 0.05em; margin-bottom: -0.05em;
-}
-.hero h1 .word-inner {
-  display: inline-block;
-  transform: translateY(110%); opacity: 0;
-  animation: word-rise 0.55s var(--cds-motion-entrance) both;
-  animation-delay: var(--d, 0ms);
-}
-@keyframes word-rise { to { transform: translateY(0); opacity: 1; } }
-.hero h1 .word-gold { color: var(--cds-link-primary); }
+  color: var(--cds-text-primary);
+  font-family: var(--cds-font-family-sans);
+  max-width: 600px;
+  margin-bottom: var(--cds-spacing-06);
 
-/* Carbon $body-long-02 */
-.hero p {
+  opacity: 0;
+  animation: ibm-fade-in 400ms var(--cds-motion-entrance) 200ms forwards;
+}
+
+/* Description — Carbon $body-long-02: 1rem / 400 / 1.5 line-height */
+.ibm-page-header-desc {
   font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
   color: var(--cds-text-secondary);
-  max-width: 520px; margin: 0 auto var(--cds-spacing-07);
+  font-family: var(--cds-font-family-sans);
+  max-width: 480px;
+  margin-bottom: var(--cds-spacing-08);
+
   opacity: 0;
-  animation: hero-fade-up 0.6s var(--cds-motion-entrance) 0.55s forwards;
+  animation: ibm-fade-in 400ms var(--cds-motion-entrance) 300ms forwards;
+}
+
+/* Action buttons row */
+.ibm-page-header-actions {
+  display: flex;
+  gap: var(--cds-spacing-03);
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  opacity: 0;
+  animation: ibm-fade-in 400ms var(--cds-motion-entrance) 400ms forwards;
 }
 
 /* Carbon Primary Button */
-.hero-cta {
+.ibm-btn {
   display: inline-flex; align-items: center; gap: var(--cds-spacing-04);
-  background: var(--cds-button-primary);
-  color: #fff; border: none; border-radius: 0;
+  border: none; border-radius: 0;
   padding: 13px var(--cds-spacing-07) 13px var(--cds-spacing-06);
   font-size: 0.875rem; font-weight: 400;
   font-family: var(--cds-font-family-sans);
-  letter-spacing: 0.16px;  /* Carbon $label-01 letter-spacing */
+  letter-spacing: 0.16px;
   cursor: pointer;
-  opacity: 0;
-  animation: hero-fade-up 0.6s var(--cds-motion-entrance) 0.9s forwards;
-  transition: background 70ms var(--cds-motion-standard), box-shadow 70ms var(--cds-motion-standard);
-  position: relative; z-index: 2;
-  min-height: 48px; /* Carbon size-lg */
+  min-height: 48px;
+  transition: background 70ms var(--cds-motion-standard);
+  position: relative;
 }
-.hero-cta:hover  { background: #0062fe; }
-.hero-cta:active { background: #0043ce; }
-.hero-cta:focus-visible {
-  outline: 2px solid #ffffff;   /* Carbon $focus on g100 = #ffffff */
+.ibm-btn:focus-visible {
+  outline: 2px solid #ffffff;
   outline-offset: -4px;
-  box-shadow: inset 0 0 0 1px #161616;  /* Carbon $focus-inset */
+  box-shadow: inset 0 0 0 1px #161616;
 }
 
-.hero-pill-row {
-  display: flex; align-items: center; justify-content: center;
-  gap: var(--cds-spacing-04); flex-wrap: wrap;
-  margin-top: var(--cds-spacing-05); margin-bottom: var(--cds-spacing-06);
-  opacity: 0;
-  animation: hero-fade-up 0.6s var(--cds-motion-entrance) 0.65s forwards;
+.ibm-btn--primary {
+  background: var(--cds-button-primary);
+  color: #fff;
 }
+.ibm-btn--primary:hover  { background: var(--cds-button-primary-hover); }
+.ibm-btn--primary:active { background: var(--cds-button-primary-active); }
 
-@keyframes hero-fade-up {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Pill buttons — Carbon ghost button style */
-.new-to-bob-btn {
-  display: inline-flex; align-items: center; gap: var(--cds-spacing-03);
+.ibm-btn--ghost {
   background: transparent;
-  border: 1px solid rgba(120,169,255,0.45);
   color: var(--cds-link-primary);
-  font-size: 0.875rem; font-weight: 400;
-  font-family: var(--cds-font-family-sans);
-  padding: 11px var(--cds-spacing-06); border-radius: 0;
-  cursor: pointer; min-height: 40px;
-  opacity: 0;
-  animation: hero-fade-up 560ms var(--cds-motion-entrance) 800ms forwards;
-  transition: background 70ms var(--cds-motion-standard), border-color 70ms var(--cds-motion-standard);
-  position: relative; z-index: 2;
+  border: 1px solid transparent;
+  padding: 13px var(--cds-spacing-06);
 }
-.new-to-bob-btn:hover { background: rgba(120,169,255,0.08); border-color: var(--cds-link-primary); }
-.new-to-bob-btn:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: -4px;
-  box-shadow: inset 0 0 0 1px #161616;
+.ibm-btn--ghost:hover  { background: var(--cds-button-ghost-hover); }
+.ibm-btn--ghost:active { background: var(--cds-button-ghost-active); }
+
+/* Decorative app screenshot — right side, fades into background */
+.ibm-page-header-img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  max-width: 52%;
+  object-fit: cover;
+  object-position: left center;
+  /* Subtle — not the focal point */
+  opacity: 0.35;
+  mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  pointer-events: none;
+  user-select: none;
 }
 
-.marketplace-btn {
-  display: inline-flex; align-items: center; gap: var(--cds-spacing-03);
-  background: transparent;
-  border: 1px solid rgba(190,149,255,0.45);
-  color: #c5a6ff;
-  font-size: 0.875rem; font-weight: 400;
-  font-family: var(--cds-font-family-sans);
-  padding: 11px var(--cds-spacing-06); border-radius: 0;
-  cursor: pointer; min-height: 40px; text-decoration: none;
-  opacity: 0;
-  animation: hero-fade-up 560ms var(--cds-motion-entrance) 800ms forwards;
-  transition: background 70ms var(--cds-motion-standard), border-color 70ms var(--cds-motion-standard);
-  position: relative; z-index: 2;
-}
-.marketplace-btn:hover { background: rgba(190,149,255,0.08); border-color: #c5a6ff; }
-.marketplace-btn:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: -4px;
-  box-shadow: inset 0 0 0 1px #161616;
+/* Carbon entrance animation — simple opacity, no translateY */
+@keyframes ibm-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-/* ── SCROLL SECTION ── */
+/* ── RESPONSIVE ── */
+@media (max-width: 1056px) {
+  .ibm-page-header-img { max-width: 40%; opacity: 0.25; }
+}
+@media (max-width: 672px) {
+  .ibm-page-header-img { display: none; }
+  .ibm-page-header-inner {
+    padding: var(--cds-spacing-08) var(--cds-spacing-05) var(--cds-spacing-09);
+  }
+  .ibm-page-header-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+}
+
+/* ── SECTION INTRO (tracks section heading) ───────────────────────────────
+   Sits below the page header, above the track list.                         */
 .scroll-section {
-  position: relative; z-index: 1;
-  max-width: 960px; margin: 0 auto;
-  padding: 0 var(--cds-spacing-05) var(--cds-spacing-10);
+  position: relative;
+  z-index: 1;
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 0 var(--cds-spacing-07) var(--cds-spacing-12);
 }
 
 .section-intro {
-  text-align: center; margin-bottom: var(--cds-spacing-10);
-  opacity: 0; transform: translateY(24px);
-  animation: section-reveal 600ms var(--cds-motion-entrance) 400ms forwards;
+  padding: var(--cds-spacing-10) 0 var(--cds-spacing-07);
 }
-@keyframes section-reveal { to { opacity: 1; transform: translateY(0); } }
 
-/* Carbon $expressive-heading-04 */
+/* Carbon $productive-heading-04: 1.75rem / 400 */
 .section-intro h2 {
   font-size: 1.75rem;
-  font-weight: 400;   /* Carbon headings are 300–400 weight at larger sizes */
-  color: var(--cds-text-primary);  /* $text-primary — headings don't take brand color in Carbon */
+  font-weight: 400;
+  color: var(--cds-text-primary);
   letter-spacing: 0;
+  font-family: var(--cds-font-family-sans);
 }
-.section-intro p { color: var(--cds-text-secondary); margin-top: var(--cds-spacing-03); font-size: 1rem; }
 
-/* Carbon-style divider accent */
+.section-intro p {
+  color: var(--cds-text-secondary);
+  margin-top: var(--cds-spacing-03);
+  font-size: 1rem;
+  font-family: var(--cds-font-family-sans);
+}
+
+/* Carbon divider — $interactive / Blue 50 on g100, 4px height, 0 radius */
 .divider {
-  width: 48px; height: 4px;
+  width: 48px;
+  height: 4px;
   background: var(--cds-interactive);
-  border-radius: 0; margin: var(--cds-spacing-04) auto 0;
+  border-radius: 0;
+  margin: var(--cds-spacing-04) 0 0;
+}
+
+@media (max-width: 672px) {
+  .scroll-section {
+    padding: 0 var(--cds-spacing-05) var(--cds-spacing-10);
+  }
 }
 
 /* ── TRACK CARDS — Carbon Tile-inspired ── */
@@ -1063,37 +1069,11 @@ footer {
 }
 .student-badge-clear:hover { background: rgba(250,77,86,0.15); border-color: rgba(250,77,86,0.5); color: #ff8389; }
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE — cards ── */
 @media (max-width: 640px) {
-  .hero { padding: var(--cds-spacing-08) var(--cds-spacing-05) var(--cds-spacing-09); }
-  .hero h1 { font-size: clamp(1.6rem, 7vw, 2.25rem); }
   .card-summary { padding: var(--cds-spacing-05) var(--cds-spacing-04); gap: var(--cds-spacing-04); }
   .card-icon { width: 44px; height: 44px; }
   .card-detail-inner { padding: var(--cds-spacing-05) var(--cds-spacing-04); }
-  .hero-pill-row { gap: var(--cds-spacing-03); }
-  .new-to-bob-btn, .marketplace-btn { padding: 9px var(--cds-spacing-05); font-size: 0.875rem; }
-}
-
-/* ── AGENDA BUTTON ── */
-.agenda-btn {
-  display: inline-flex; align-items: center; gap: var(--cds-spacing-03);
-  background: transparent;
-  border: 1px solid rgba(66,190,101,0.45);
-  color: #42be65;
-  font-size: 0.875rem; font-weight: 400;
-  font-family: var(--cds-font-family-sans);
-  padding: 11px var(--cds-spacing-06); border-radius: 0;
-  cursor: pointer; min-height: 40px;
-  opacity: 0;
-  animation: hero-fade-up 560ms var(--cds-motion-entrance) 800ms forwards;
-  transition: background 70ms var(--cds-motion-standard), border-color 70ms var(--cds-motion-standard);
-  position: relative; z-index: 2;
-}
-.agenda-btn:hover { background: rgba(66,190,101,0.08); border-color: #42be65; }
-.agenda-btn:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: -4px;
-  box-shadow: inset 0 0 0 1px #161616;
 }
 
 /* ── AGENDA MODAL ── */
