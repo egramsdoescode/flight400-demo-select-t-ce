@@ -1,113 +1,176 @@
-<div class="bubble-card track-2" id="card-2">
-  <div class="card-summary">
-    <div class="card-icon" aria-label="RPG modernization">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<article class="cds-tile" id="card-2">
+
+  <!-- ── Tile Summary (always visible, clickable to expand) ── -->
+  <div class="cds-tile-summary">
+    <div class="cds-tile-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
       </svg>
     </div>
-    <div class="card-text">
-      <div class="card-label">Exercise 2</div>
-      <div class="card-title">Program-Level Explanation &amp; Modernization</div>
-      <div class="card-desc">Understand a 30-year-old OPM RPG program, then modernize it to free-format ILE RPG using Bob's guided modernization workflow — including AI-assisted compilation.</div>
-      <div class="card-meta">
-        <span class="card-tag">~15 min</span>
-        <span class="card-tag">IBM i Developer mode</span>
-        <span class="card-tag">RPG Modernization workflow</span>
+    <div class="cds-tile-content">
+      <p class="cds-tile-label">Exercise 2</p>
+      <h3 class="cds-tile-title">Program-Level Explanation &amp; Modernization</h3>
+      <p class="cds-tile-desc">Understand a 30-year-old OPM RPG program, then modernize it to free-format ILE RPG using Bob's guided modernization workflow — including AI-assisted compilation.</p>
+      <div class="cds-tag-group">
+        <span class="cds-tag cds-tag--blue">~15 min</span>
+        <span class="cds-tag cds-tag--gray">IBM i Developer mode</span>
+        <span class="cds-tag cds-tag--gray">RPG Modernization workflow</span>
       </div>
     </div>
-    <div class="card-chevron" aria-hidden="true">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5l5 5 5-5"/></svg>
-    </div>
+    <button class="cds-tile-expand-btn" type="button" aria-label="Expand Exercise 2" aria-expanded="false">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 5l5 5 5-5"/>
+      </svg>
+    </button>
   </div>
 
-  <div class="card-detail">
-    <div class="card-detail-inner">
-      <div class="detail-intro">Explain and modernize <code>FRS409</code> — the Order Modification Confirmation Window — from classic OPM RPG to modern free-format ILE RPG, then compile it directly on your IBM i.</div>
+  <!-- ── Tile Detail (shown when expanded) ── -->
+  <div class="cds-tile-detail">
+    <div class="cds-tile-detail-inner">
+      <p class="cds-tile-intro">Explain and modernize <code>FRS409</code> — the Order Modification Confirmation Window — from classic OPM RPG to modern free-format ILE RPG, then compile it directly on your IBM i.</p>
 
-      <div class="use-cases">
+      <div class="cds-accordion">
 
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">1</div>
-            <div class="uc-title">2a — Understand FRS409</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
-          </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <div class="mode-steps">
-              <div class="mode-step">
-                <div class="step-num">1</div>
-                <div class="step-body">
-                  <div class="step-title">Open FRS409 in the Object Browser</div>
-                  <div class="step-desc">Switch Bob to <strong>IBM i Developer</strong> mode. In the Object Browser, navigate to <code>FLGHT4nn/QRPGSRC</code> and open <code>FRS409</code>.</div>
-                </div>
-              </div>
-              <div class="mode-step">
-                <div class="step-num">2</div>
-                <div class="step-body">
-                  <div class="step-title">Ask Bob what the program does</div>
-                  <div class="step-desc">With <code>FRS409</code> open in the editor, type in the Bob chat:</div>
-                  <div class="step-prompt"><pre>What does this program do?</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-                  <div class="info-box">Bob will explain that <code>FRS409</code> is the <strong>Order Modification Confirmation Window</strong> — an OPM RPG program that displays a confirmation popup when a user modifies an order. It handles F3 (Exit), F12 (Cancel), and Enter key inputs via a DOUEQ loop with CASEQ dispatch subroutines.</div>
-                </div>
+        <!-- Step 2a -->
+        <div class="cds-accordion-item">
+          <button class="cds-accordion-heading" type="button" aria-expanded="false" aria-controls="uc-2-1-content">
+            <span class="cds-accordion-step-num">1</span>
+            <span class="cds-accordion-title">2a — Understand FRS409</span>
+            <svg class="cds-accordion-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5l5 5 5-5"/>
+            </svg>
+          </button>
+          <div class="cds-accordion-content" id="uc-2-1-content" role="region">
+            <div class="cds-accordion-content-inner">
+              <div>
+                <ol class="cds-progress-list">
+                  <li class="cds-progress-step">
+                    <span class="cds-progress-step__circle">1</span>
+                    <div class="cds-progress-step__body">
+                      <h4 class="cds-progress-step__label">Open FRS409 in the Object Browser</h4>
+                      <p class="cds-progress-step__desc">Switch Bob to <strong>IBM i Developer</strong> mode. In the Object Browser, navigate to <code>FLGHT4nn/QRPGSRC</code> and open <code>FRS409</code>.</p>
+                    </div>
+                  </li>
+                  <li class="cds-progress-step">
+                    <span class="cds-progress-step__circle">2</span>
+                    <div class="cds-progress-step__body">
+                      <h4 class="cds-progress-step__label">Ask Bob what the program does</h4>
+                      <p class="cds-progress-step__desc">With <code>FRS409</code> open in the editor, type in the Bob chat:</p>
+                      <div class="cds-code-snippet">
+                        <pre>What does this program do?</pre>
+                        <button class="cds-code-snippet__copy-btn" aria-label="Copy code to clipboard" type="button">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                            <path d="M28 10v18H10V10h18m0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM4 18H2V4a2 2 0 0 1 2-2h14v2H4z"/>
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="cds-inline-notification cds-inline-notification--info" role="note">
+                        <svg class="cds-inline-notification__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                          <path d="M17 22h-2v-8h2zM17 12h-2v-2h2z"/>
+                          <path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"/>
+                        </svg>
+                        <div class="cds-inline-notification__text">
+                          <p class="cds-inline-notification__subtitle">Bob will explain that <code>FRS409</code> is the <strong>Order Modification Confirmation Window</strong> — an OPM RPG program that displays a confirmation popup when a user modifies an order. It handles F3 (Exit), F12 (Cancel), and Enter key inputs via a DOUEQ loop with CASEQ dispatch subroutines.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ol>
               </div>
             </div>
-          </div></div>
+          </div>
         </div>
 
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">2</div>
-            <div class="uc-title">2b — Modernize FRS409 Using the RPG Modernization Workflow</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
-          </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <div class="mode-steps">
-              <div class="mode-step">
-                <div class="step-num">1</div>
-                <div class="step-body">
-                  <div class="step-title">Ask Bob to modernize the program</div>
-                  <div class="step-desc">With <code>FRS409</code> still open in the editor, type in the Bob chat:</div>
-                  <div class="step-prompt"><pre>Can you modernize this program?</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-                  <div class="info-box">Bob recognizes the fixed-format OPM RPG code and offers to run the <strong>RPG Modernization (Fixed to Free Format)</strong> workflow. Choose <strong>Start workflow</strong>.</div>
-                </div>
+        <!-- Step 2b -->
+        <div class="cds-accordion-item">
+          <button class="cds-accordion-heading" type="button" aria-expanded="false" aria-controls="uc-2-2-content">
+            <span class="cds-accordion-step-num">2</span>
+            <span class="cds-accordion-title">2b — Modernize FRS409 Using the RPG Modernization Workflow</span>
+            <svg class="cds-accordion-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5l5 5 5-5"/>
+            </svg>
+          </button>
+          <div class="cds-accordion-content" id="uc-2-2-content" role="region">
+            <div class="cds-accordion-content-inner">
+              <div>
+                <ol class="cds-progress-list">
+                  <li class="cds-progress-step">
+                    <span class="cds-progress-step__circle">1</span>
+                    <div class="cds-progress-step__body">
+                      <h4 class="cds-progress-step__label">Ask Bob to modernize the program</h4>
+                      <p class="cds-progress-step__desc">With <code>FRS409</code> still open in the editor, type in the Bob chat:</p>
+                      <div class="cds-code-snippet">
+                        <pre>Can you modernize this program?</pre>
+                        <button class="cds-code-snippet__copy-btn" aria-label="Copy code to clipboard" type="button">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                            <path d="M28 10v18H10V10h18m0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM4 18H2V4a2 2 0 0 1 2-2h14v2H4z"/>
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="cds-inline-notification cds-inline-notification--info" role="note">
+                        <svg class="cds-inline-notification__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                          <path d="M17 22h-2v-8h2zM17 12h-2v-2h2z"/>
+                          <path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"/>
+                        </svg>
+                        <div class="cds-inline-notification__text">
+                          <p class="cds-inline-notification__subtitle">Bob recognizes the fixed-format OPM RPG code and offers to run the <strong>RPG Modernization (Fixed to Free Format)</strong> workflow. Choose <strong>Start workflow</strong>.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="cds-progress-step">
+                    <span class="cds-progress-step__circle">2</span>
+                    <div class="cds-progress-step__body">
+                      <h4 class="cds-progress-step__label">Fill in the workflow form</h4>
+                      <p class="cds-progress-step__desc">The workflow form opens. Fill in the details:</p>
+                      <ul style="margin-top:6px;padding-left:18px;font-size:0.875rem;color:var(--cds-text-secondary);line-height:1.7">
+                        <li><strong style="color:var(--cds-text-primary)">Source file:</strong> <code>FLGHT4nn/QRPGSRC</code></li>
+                        <li><strong style="color:var(--cds-text-primary)">Source member:</strong> <code>FRS409</code> (Bob pre-fills from the open editor)</li>
+                      </ul>
+                      <p class="cds-progress-step__desc" style="margin-top:8px">Accept the other defaults and click <strong>Analyze Member</strong>. Bob will spin up a subagent to convert the fixed-format RPG to modern free-format ILE RPG, then run the Code for IBM i compile action for ILE RPG, triggering a <code>CRTBNDRPG</code> command on your LPAR. Watch the output in the terminal panel.</p>
+                    </div>
+                  </li>
+                  <li class="cds-progress-step">
+                    <span class="cds-progress-step__circle">3</span>
+                    <div class="cds-progress-step__body">
+                      <h4 class="cds-progress-step__label">Confirm the output location</h4>
+                      <p class="cds-progress-step__desc">When Bob prompts <strong>"Confirm Output Member Location"</strong>, ensure the path contains your library number. Approve the requested tasks. Bob will place the modernized source at <code>FLGHT4nn/QRPGLESRC/FRS409.RPGLE</code>.</p>
+                    </div>
+                  </li>
+                </ol>
               </div>
-              <div class="mode-step">
-                <div class="step-num">2</div>
-                <div class="step-body">
-                  <div class="step-title">Fill in the workflow form</div>
-                  <div class="step-desc">The workflow form opens. Fill in the details:
-                    <ul style="margin-top:6px;padding-left:18px;font-size:0.82rem;color:var(--muted);line-height:1.7">
-                      <li><strong style="color:var(--text)">Source file:</strong> <code>FLGHT4nn/QRPGSRC</code></li>
-                      <li><strong style="color:var(--text)">Source member:</strong> <code>FRS409</code> (Bob pre-fills from the open editor)</li>
-                    </ul>
-                    Accept the other defaults and click <strong>Analyze Member</strong>. Bob will spin up a subagent to convert the fixed-format RPG to modern free-format ILE RPG, then run the Code for IBM i compile action for ILE RPG, triggering a <code>CRTBNDRPG</code> command on your LPAR. Watch the output in the terminal panel.
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2c -->
+        <div class="cds-accordion-item">
+          <button class="cds-accordion-heading" type="button" aria-expanded="false" aria-controls="uc-2-3-content">
+            <span class="cds-accordion-step-num">3</span>
+            <span class="cds-accordion-title">2c — Review the Modernization Summary</span>
+            <svg class="cds-accordion-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5l5 5 5-5"/>
+            </svg>
+          </button>
+          <div class="cds-accordion-content" id="uc-2-3-content" role="region">
+            <div class="cds-accordion-content-inner">
+              <div>
+                <p class="cds-accordion-desc">Bob automatically generates a <strong>Modernization Summary Report</strong> in the chat, including: what was changed and why, lines of code before vs. after, opcode-by-opcode conversion notes, and the compilation result.</p>
+                <div class="cds-inline-notification cds-inline-notification--success" role="note">
+                  <svg class="cds-inline-notification__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                    <path d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2zm-2 19.6l-5.3-5.3 1.4-1.4L14 18.8l8.9-8.9 1.4 1.4L14 21.6z"/>
+                  </svg>
+                  <div class="cds-inline-notification__text">
+                    <p class="cds-inline-notification__subtitle">At the bottom of the Bob chat panel, click the <strong>File Changed</strong> item to see the diff for <code>FRS409.RPGLE</code>. In the Object Browser, right-click <code>FRS409.PGM</code> → <strong>Detail</strong> to check the new compile timestamp. You can copy the report to <code>FRS409-Modernization-Report.md</code> in your workspace.</p>
                   </div>
                 </div>
               </div>
-              <div class="mode-step">
-                <div class="step-num">3</div>
-                <div class="step-body">
-                  <div class="step-title">Confirm the output location</div>
-                  <div class="step-desc">When Bob prompts <strong>"Confirm Output Member Location"</strong>, ensure the path contains your library number. Approve the requested tasks. Bob will place the modernized source at <code>FLGHT4nn/QRPGLESRC/FRS409.RPGLE</code>.</div>
-                </div>
-              </div>
             </div>
-          </div></div>
-        </div>
-
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">3</div>
-            <div class="uc-title">2c — Review the Modernization Summary</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Bob automatically generates a <strong>Modernization Summary Report</strong> in the chat, including: what was changed and why, lines of code before vs. after, opcode-by-opcode conversion notes, and the compilation result.</p>
-            <div class="info-box">✅ At the bottom of the Bob chat panel, click the <strong>File Changed</strong> item to see the diff for <code>FRS409.RPGLE</code>. In the Object Browser, right-click <code>FRS409.PGM</code> → <strong>Detail</strong> to check the new compile timestamp. You can copy the report to <code>FRS409-Modernization-Report.md</code> in your workspace.</div>
-          </div></div>
         </div>
 
-      </div>
-    </div>
-  </div>
-</div>
+      </div><!-- .cds-accordion -->
+    </div><!-- .cds-tile-detail-inner -->
+  </div><!-- .cds-tile-detail -->
+
+</article>

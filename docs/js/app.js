@@ -221,10 +221,11 @@
   }
 
   // ── STUDENT SELECTION ────────────────────────────────────────────────────
-  var STUDENT_KEY    = 'flight400-student-v1';
-  var gfBadgeEl      = document.getElementById('gf-student-badge');
-  var gfBadgeNameEl  = document.getElementById('student-badge-name');
-  var gfBadgeClearEl = document.getElementById('student-badge-clear');
+  var STUDENT_KEY       = 'flight400-student-v1';
+  var gfBadgeEl         = document.getElementById('gf-student-badge');
+  var gfBadgeNameEl     = document.getElementById('student-badge-name');
+  var gfBadgeSubtitleEl = document.getElementById('student-badge-subtitle');
+  var gfBadgeClearEl    = document.getElementById('student-badge-clear');
 
   function padNum(n) {
     return n < 10 ? '0' + n : '' + n;
@@ -348,23 +349,16 @@
   function updateStudentBadge(num, libNum, port, name) {
     if (!gfBadgeEl) return;
     if (gfBadgeNameEl) {
-      var dot = '<span style="opacity:0.4;margin:0 5px">·</span>';
-      var label = name
-        ? '<strong>' + name + '</strong>' + dot + 'FLGHT' + libNum
-        : '<span style="opacity:0.6;font-weight:500;font-size:0.68rem">Student&nbsp;</span><strong>' + num + '</strong>' + dot + 'FLGHT' + libNum;
-      gfBadgeNameEl.innerHTML = label + dot + '<span style="font-family:var(--font-mono)">:' + port + '</span>';
+      gfBadgeNameEl.textContent = name ? name : 'Student ' + num;
     }
-    gfBadgeEl.classList.remove('hidden');
-    syncBadgeOffset();
+    if (gfBadgeSubtitleEl) {
+      gfBadgeSubtitleEl.textContent = 'FLGHT' + libNum + ' · :' + port;
+    }
+    gfBadgeEl.classList.add('cds-toast--visible');
   }
 
   if (gfBadgeClearEl) {
     gfBadgeClearEl.addEventListener('click', clearStudent);
-  }
-
-  function syncBadgeOffset() {
-    if (!gfBadgeEl) return;
-    gfBadgeEl.style.bottom = '24px';
   }
 
   // ── COPY HELPER ───────────────────────────────────────────────────────────

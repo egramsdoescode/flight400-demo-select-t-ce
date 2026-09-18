@@ -1781,7 +1781,11 @@ code:not(pre code) {
   padding: 0; margin: 0;
   align-items: center;
 }
-/* Suppress bullet injected by www.css global li::before rule */
+/* Suppress bullet and padding injected by www.css global list rules */
+.ibm-page-footer__links li {
+  padding: 0 !important;
+  margin: 0 !important;
+}
 .ibm-page-footer__links li::before {
   content: none !important;
   display: none !important;

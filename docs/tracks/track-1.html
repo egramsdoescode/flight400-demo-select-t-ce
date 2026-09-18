@@ -1,131 +1,228 @@
-<div class="bubble-card track-1" id="card-1">
-  <div class="card-summary">
-    <div class="card-icon" aria-label="Architecture documentation">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--c1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+<article class="cds-tile" id="card-1">
+
+  <!-- ── Tile Summary (always visible, clickable to expand) ── -->
+  <div class="cds-tile-summary">
+    <div class="cds-tile-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <path d="M3 9h18M9 21V9"/>
       </svg>
     </div>
-    <div class="card-text">
-      <div class="card-label">Exercise 1</div>
-      <div class="card-title">Code Explanation &amp; Architecture Documentation</div>
-      <div class="card-desc">Use Bob to automatically generate an architecture overview with Mermaid diagrams, then switch to Database mode to produce an Entity Relationship Diagram of the FLGHT4nn database.</div>
-      <div class="card-meta">
-        <span class="card-tag">~30 min</span>
-        <span class="card-tag">IBM i Developer mode</span>
-        <span class="card-tag">IBM i Database mode</span>
+    <div class="cds-tile-content">
+      <p class="cds-tile-label">Exercise 1</p>
+      <h3 class="cds-tile-title">Code Explanation &amp; Architecture Documentation</h3>
+      <p class="cds-tile-desc">Use Bob to automatically generate an architecture overview with Mermaid diagrams, then switch to Database mode to produce an Entity Relationship Diagram of the FLGHT4nn database.</p>
+      <div class="cds-tag-group">
+        <span class="cds-tag cds-tag--blue">~30 min</span>
+        <span class="cds-tag cds-tag--gray">IBM i Developer mode</span>
+        <span class="cds-tag cds-tag--gray">IBM i Database mode</span>
       </div>
     </div>
-    <div class="card-chevron" aria-hidden="true">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5l5 5 5-5"/></svg>
-    </div>
+    <button class="cds-tile-expand-btn" type="button" aria-label="Expand Exercise 1" aria-expanded="false">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 5l5 5 5-5"/>
+      </svg>
+    </button>
   </div>
 
-  <div class="card-detail">
-    <div class="card-detail-inner">
-      <div class="detail-intro">Generate a living architecture document and ERD from the legacy FLGHT4nn codebase — no manual reverse-engineering required.</div>
+  <!-- ── Tile Detail (shown when expanded) ── -->
+  <div class="cds-tile-detail">
+    <div class="cds-tile-detail-inner">
+      <p class="cds-tile-intro">Generate a living architecture document and ERD from the legacy FLGHT4nn codebase — no manual reverse-engineering required.</p>
 
-      <div class="use-cases">
+      <!-- Use-case accordion -->
+      <div class="cds-accordion">
 
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">1</div>
-            <div class="uc-title">1a — Browse the Application in the Object Browser</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
+        <!-- Step 1a -->
+        <div class="cds-accordion-item">
+          <button class="cds-accordion-heading" type="button" aria-expanded="false" aria-controls="uc-1-1-content">
+            <span class="cds-accordion-step-num">1</span>
+            <span class="cds-accordion-title">1a — Browse the Application in the Object Browser</span>
+            <svg class="cds-accordion-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5l5 5 5-5"/>
+            </svg>
+          </button>
+          <div class="cds-accordion-content" id="uc-1-1-content" role="region">
+            <div class="cds-accordion-content-inner">
+              <div>
+                <p class="cds-accordion-desc">Explore the FLGHT4nn library structure before generating documentation.</p>
+                <ol class="cds-progress-list">
+                  <li class="cds-progress-step">
+                    <span class="cds-progress-step__circle">1</span>
+                    <div class="cds-progress-step__body">
+                      <h4 class="cds-progress-step__label">Expand your library in the Object Browser</h4>
+                      <p class="cds-progress-step__desc">In the IBM i sidebar, expand <strong>User Library List</strong> and <strong>Object Browser</strong>. Add a filter for <code>FLGHT4nn</code> in the object browser if not already done so, and set the filter to <code>*ALL</code> so you see all object types: <code>*PGM</code> (RPG and CL programs), <code>*FILE</code> (display and database files), <code>*MENU</code> (application menus).</p>
+                      <div class="cds-inline-notification cds-inline-notification--warning" role="alert">
+                        <svg class="cds-inline-notification__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                          <path d="M16 2L2 30h28L16 2zm0 4l11.5 22h-23L16 6z"/>
+                          <path d="M15 14h2v7h-2zM15 23h2v2h-2z"/>
+                        </svg>
+                        <div class="cds-inline-notification__text">
+                          <p class="cds-inline-notification__title">Use <code>*ALL</code>, not <code>*</code></p>
+                          <p class="cds-inline-notification__subtitle">The wildcard <code>*</code> does not work for filtering object types in the Object Browser. You must type <code>*ALL</code> exactly.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="cds-progress-step">
+                    <span class="cds-progress-step__circle">2</span>
+                    <div class="cds-progress-step__body">
+                      <h4 class="cds-progress-step__label">Browse source members and preview a display file</h4>
+                      <p class="cds-progress-step__desc">Expand <strong>Source Files</strong> and open a few programs from <code>QRPGSRC</code>. Then navigate to <code>QDDSSRCD</code> and open <code>FRS001DF</code>. Click <strong>Preview All</strong> on the first line to see the green-screen layout rendered visually. Try <code>FRS021DF</code> as well — this is the Flight Maintenance screen used in Exercise 3.</p>
+                    </div>
+                  </li>
+                  <li class="cds-progress-step">
+                    <span class="cds-progress-step__circle">3</span>
+                    <div class="cds-progress-step__body">
+                      <h4 class="cds-progress-step__label">Check how old the programs are</h4>
+                      <p class="cds-progress-step__desc">In the Object Browser, click on the program <code>FRS000.pgm</code> — that is the flight reservation logon. You'll see in the <strong>Detail</strong> that this program was compiled in 1997, over 30 years ago!</p>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </div>
           </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Explore the FLGHT4nn library structure before generating documentation.</p>
-            <div class="mode-steps">
-              <div class="mode-step">
-                <div class="step-num">1</div>
-                <div class="step-body">
-                  <div class="step-title">Expand your library in the Object Browser</div>
-                  <div class="step-desc">In the IBM i sidebar, expand <strong>User Library List</strong> and <strong>Object Browser</strong>. Add a filter for <code>FLGHT4nn</code> in the object browser if not already done so, and set the filter to <code>*ALL</code> so you see all object types: <code>*PGM</code> (RPG and CL programs), <code>*FILE</code> (display and database files), <code>*MENU</code> (application menus).</div>
-                  <div class="warn-box">⚠️ <strong>Use <code>*ALL</code>, not <code>*</code></strong> — the wildcard <code>*</code> does not work for filtering object types in the Object Browser. You must type <code>*ALL</code> exactly.</div>
+        </div>
+
+        <!-- Step 1b -->
+        <div class="cds-accordion-item">
+          <button class="cds-accordion-heading" type="button" aria-expanded="false" aria-controls="uc-1-2-content">
+            <span class="cds-accordion-step-num">2</span>
+            <span class="cds-accordion-title">1b — Generate an Architecture Explanation with Bob</span>
+            <svg class="cds-accordion-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5l5 5 5-5"/>
+            </svg>
+          </button>
+          <div class="cds-accordion-content" id="uc-1-2-content" role="region">
+            <div class="cds-accordion-content-inner">
+              <div>
+                <p class="cds-accordion-desc">Switch to <strong>IBM i Developer</strong> mode. Click the <strong>+ (Scope) button</strong> and select <strong>(QSYS) Library List</strong> as the context scope. Make sure <code>FLGHT4nn</code> is in the library list. Replace <code>nn</code> with your library number in the prompt below.</p>
+                <div class="cds-code-snippet">
+                  <pre>Generate a comprehensive architecture overview of the FLGHT4nn application in QSYS in Markdown format. Include a high-level description, the main program flows, key programs and their roles, a Mermaid architecture diagram, and a summary of the database tables used.</pre>
+                  <button class="cds-code-snippet__copy-btn" aria-label="Copy code to clipboard" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                      <path d="M28 10v18H10V10h18m0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM4 18H2V4a2 2 0 0 1 2-2h14v2H4z"/>
+                    </svg>
+                  </button>
+                </div>
+                <p class="cds-accordion-desc" style="margin-top:1rem">Bob will analyze the programs, source members, and database files and return a structured Markdown document. Review the output — notice how it identifies the menu-driven architecture, the core transaction programs, and the underlying database schema.</p>
+                <div class="cds-inline-notification cds-inline-notification--info" role="note">
+                  <svg class="cds-inline-notification__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                    <path d="M17 22h-2v-8h2zM17 12h-2v-2h2z"/>
+                    <path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"/>
+                  </svg>
+                  <div class="cds-inline-notification__text">
+                    <p class="cds-inline-notification__subtitle">Copy the output to a new file <code>FLGHT4nn-Architecture.md</code> in your workspace for reference.</p>
+                  </div>
                 </div>
               </div>
-              <div class="mode-step">
-                <div class="step-num">2</div>
-                <div class="step-body">
-                  <div class="step-title">Browse source members and preview a display file</div>
-                  <div class="step-desc">Expand <strong>Source Files</strong> and open a few programs from <code>QRPGSRC</code>. Then navigate to <code>QDDSSRCD</code> and open <code>FRS001DF</code>. Click <strong>Preview All</strong> on the first line to see the green-screen layout rendered visually. Try <code>FRS021DF</code> as well — this is the Flight Maintenance screen used in Exercise 3.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 1c -->
+        <div class="cds-accordion-item">
+          <button class="cds-accordion-heading" type="button" aria-expanded="false" aria-controls="uc-1-3-content">
+            <span class="cds-accordion-step-num">3</span>
+            <span class="cds-accordion-title">1c — Generate an Entity Relationship Diagram</span>
+            <svg class="cds-accordion-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5l5 5 5-5"/>
+            </svg>
+          </button>
+          <div class="cds-accordion-content" id="uc-1-3-content" role="region">
+            <div class="cds-accordion-content-inner">
+              <div>
+                <p class="cds-accordion-desc">Switch to <strong>IBM i Database</strong> mode using the mode selector. Type the slash command below so <code>/erd</code> is highlighted in the Bob chat. Replace <code>4nn</code> with your number.</p>
+                <div class="cds-code-snippet">
+                  <pre>/erd FLGHT4nn</pre>
+                  <button class="cds-code-snippet__copy-btn" aria-label="Copy code to clipboard" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                      <path d="M28 10v18H10V10h18m0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM4 18H2V4a2 2 0 0 1 2-2h14v2H4z"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="cds-inline-notification cds-inline-notification--info" role="note">
+                  <svg class="cds-inline-notification__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                    <path d="M17 22h-2v-8h2zM17 12h-2v-2h2z"/>
+                    <path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"/>
+                  </svg>
+                  <div class="cds-inline-notification__text">
+                    <p class="cds-inline-notification__subtitle">Bob will introspect the physical files (FLIGHTS, ORDERS, CUSTOMERS, AGENTS, etc.) and generate a Mermaid ERD. Key relationships: ORDERS links to FLIGHTS, CUSTOMERS, and AGENTS; FLIGHTS references FRCITY and TOCITY. Copy the ERD to your architecture document.</p>
+                  </div>
                 </div>
               </div>
-              <div class="mode-step">
-                <div class="step-num">3</div>
-                <div class="step-body">
-                  <div class="step-title">Check how old the programs are</div>
-                  <div class="step-desc">In the Object Browser, click on the program <code>FRS000.pgm</code> — that is the flight reservation logon. You'll see in the <strong>Detail</strong> that this program was compiled in 1997, over 30 years ago!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 1d -->
+        <div class="cds-accordion-item">
+          <button class="cds-accordion-heading" type="button" aria-expanded="false" aria-controls="uc-1-4-content">
+            <span class="cds-accordion-step-num">4</span>
+            <span class="cds-accordion-title">1d — (Optional) Generate a Draw.io Architecture Diagram</span>
+            <svg class="cds-accordion-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5l5 5 5-5"/>
+            </svg>
+          </button>
+          <div class="cds-accordion-content" id="uc-1-4-content" role="region">
+            <div class="cds-accordion-content-inner">
+              <div>
+                <p class="cds-accordion-desc"><strong>Prerequisite:</strong> Install the <strong>Draw.io Integration</strong> extension (<code>Cmd+Shift+X</code> → search "Draw.io Integration" → Install). Then in IBM i Developer mode with Library List scope, replace <code>4nn</code> with your number:</p>
+                <div class="cds-code-snippet">
+                  <pre>Analyze the FLGHT4nn application from the library list and generate a draw.io architecture diagram showing the main programs, menus, and database files. Save the file as `FLGHT4nn-architecture.drawio` in `$HOME/docs/` on IBM i.</pre>
+                  <button class="cds-code-snippet__copy-btn" aria-label="Copy code to clipboard" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                      <path d="M28 10v18H10V10h18m0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM4 18H2V4a2 2 0 0 1 2-2h14v2H4z"/>
+                    </svg>
+                  </button>
                 </div>
+                <figure class="cds-step-screenshot">
+                  <img src="img/drawIo.png" alt="Draw.io architecture diagram generated by Bob"/>
+                  <figcaption>Example Draw.io architecture diagram — rendered directly in Bob IDE</figcaption>
+                </figure>
               </div>
             </div>
-          </div></div>
+          </div>
         </div>
 
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">2</div>
-            <div class="uc-title">1b — Generate an Architecture Explanation with Bob</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
-          </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Switch to <strong>IBM i Developer</strong> mode. Click the <strong>+ (Scope) button</strong> and select <strong>(QSYS) Library List</strong> as the context scope. Make sure <code>FLGHT4nn</code> is in the library list. Replace <code>nn</code> with your library number in the prompt below.</p>
-            <div class="step-prompt"><pre>Generate a comprehensive architecture overview of the FLGHT4nn application in QSYS in Markdown format. Include a high-level description, the main program flows, key programs and their roles, a Mermaid architecture diagram, and a summary of the database tables used.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-            <p class="uc-desc" style="margin-top:1rem">Bob will analyze the programs, source members, and database files and return a structured Markdown document. Review the output — notice how it identifies the menu-driven architecture, the core transaction programs, and the underlying database schema.</p>
-            <div class="info-box">Copy the output to a new file <code>FLGHT4nn-Architecture.md</code> in your workspace for reference.</div>
-          </div></div>
-        </div>
-
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">3</div>
-            <div class="uc-title">1c — Generate an Entity Relationship Diagram</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
-          </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Switch to <strong>IBM i Database</strong> mode using the mode selector. Type the slash command below so <code>/erd</code> is highlighted in the Bob chat. Replace <code>4nn</code> with your number.</p>
-            <div class="step-prompt"><pre>/erd FLGHT4nn</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-            <div class="info-box">Bob will introspect the physical files (FLIGHTS, ORDERS, CUSTOMERS, AGENTS, etc.) and generate a Mermaid ERD. Key relationships: ORDERS links to FLIGHTS, CUSTOMERS, and AGENTS; FLIGHTS references FRCITY and TOCITY. Copy the ERD to your architecture document.</div>
-          </div></div>
-        </div>
-
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">4</div>
-            <div class="uc-title">1d — (Optional) Generate a Draw.io Architecture Diagram</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
-          </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc"><strong>Prerequisite:</strong> Install the <strong>Draw.io Integration</strong> extension (<code>Cmd+Shift+X</code> → search "Draw.io Integration" → Install). Then in IBM i Developer mode with Library List scope, replace <code>4nn</code> with your number:</p>
-            <div class="step-prompt"><pre>Analyze the FLGHT4nn application from the library list and generate a draw.io architecture diagram showing the main programs, menus, and database files. Save the file as `FLGHT4nn-architecture.drawio` in `$HOME/docs/` on IBM i.</pre><button class="copy-btn" aria-label="Copy">Copy</button></div>
-            <div class="step-screenshot">
-              <img src="img/drawIo.png" alt="Draw.io architecture diagram generated by Bob"/>
-              <div class="step-screenshot-caption">Example Draw.io architecture diagram — rendered directly in Bob IDE</div>
+        <!-- Step 1e -->
+        <div class="cds-accordion-item">
+          <button class="cds-accordion-heading" type="button" aria-expanded="false" aria-controls="uc-1-5-content">
+            <span class="cds-accordion-step-num">5</span>
+            <span class="cds-accordion-title">1e — (Optional) Business Rules Extraction</span>
+            <svg class="cds-accordion-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 5l5 5 5-5"/>
+            </svg>
+          </button>
+          <div class="cds-accordion-content" id="uc-1-5-content" role="region">
+            <div class="cds-accordion-content-inner">
+              <div>
+                <p class="cds-accordion-desc">Drill down on a specific member using the Business Rules Extraction workflow. Click the <strong>workflow icon</strong> at the top of the Bob panel, choose to run the workflow in your library list, and select <strong>Business Rules Extraction</strong>.</p>
+                <figure class="cds-step-screenshot">
+                  <img src="img/workflows-icon.png" alt="Workflows icon in Bob IDE"/>
+                  <figcaption>Click the workflows icon to launch a workflow</figcaption>
+                </figure>
+                <div class="cds-inline-notification cds-inline-notification--info" role="note">
+                  <svg class="cds-inline-notification__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                    <path d="M17 22h-2v-8h2zM17 12h-2v-2h2z"/>
+                    <path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"/>
+                  </svg>
+                  <div class="cds-inline-notification__text">
+                    <p class="cds-inline-notification__subtitle">When prompted, use: <strong>Library:</strong> FLGHT4nn · <strong>Source File:</strong> QRPGLESRC · <strong>Member:</strong> FRS401.RPGLE. At the end, specify an output path unique to your library number, e.g. <code>/home/ITZUSER/flght4nn/docs/business-rules/FRS401-report.md</code></p>
+                  </div>
+                </div>
+                <p class="cds-accordion-desc" style="margin-top:0.75rem">Watch Bob create a guided workflow to get the necessary data and generate a complete report describing a business function. Bob will use subagents to create a document outlining business rules, decision logic, Mermaid diagrams, process flows, and more. Documentation is written in business-friendly language, not technical jargon.</p>
+                <figure class="cds-step-screenshot">
+                  <img src="img/IFS-location.png" alt="IFS output path dialog after Business Rules Extraction workflow"/>
+                  <figcaption>Enter a path unique to your library number when prompted for the output location</figcaption>
+                </figure>
+              </div>
             </div>
-          </div></div>
-        </div>
-
-        <div class="use-case">
-          <div class="use-case-header">
-            <div class="uc-num">5</div>
-            <div class="uc-title">1e — (Optional) Business Rules Extraction</div>
-            <div class="uc-arrow" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l5 5 5-5"/></svg></div>
           </div>
-          <div class="uc-body"><div class="uc-body-inner">
-            <p class="uc-desc">Drill down on a specific member using the Business Rules Extraction workflow. Click the <strong>workflow icon</strong> at the top of the Bob panel, choose to run the workflow in your library list, and select <strong>Business Rules Extraction</strong>.</p>
-            <div class="step-screenshot">
-              <img src="img/workflows-icon.png" alt="Workflows icon in Bob IDE"/>
-              <div class="step-screenshot-caption">Click the workflows icon to launch a workflow</div>
-            </div>
-            <div class="info-box">When prompted, use: <strong>Library:</strong> FLGHT4nn · <strong>Source File:</strong> QRPGLESRC · <strong>Member:</strong> FRS401.RPGLE. At the end, specify an output path unique to your library number, e.g. <code>/home/ITZUSER/flght4nn/docs/business-rules/FRS401-report.md</code></div>
-            <p class="uc-desc" style="margin-top:0.75rem">Watch Bob create a guided workflow to get the necessary data and generate a complete report describing a business function. Bob will use subagents to create a document outlining business rules, decision logic, Mermaid diagrams, process flows, and more. Documentation is written in business-friendly language, not technical jargon.</p>
-            <div class="step-screenshot">
-              <img src="img/IFS-location.png" alt="IFS output path dialog after Business Rules Extraction workflow"/>
-              <div class="step-screenshot-caption">Enter a path unique to your library number when prompted for the output location</div>
-            </div>
-          </div></div>
         </div>
 
-      </div>
-    </div>
-  </div>
-</div>
+      </div><!-- .cds-accordion -->
+    </div><!-- .cds-tile-detail-inner -->
+  </div><!-- .cds-tile-detail -->
+
+</article>
