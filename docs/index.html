@@ -22,23 +22,6 @@
     <span class="ibm-header-name-prefix">IBM</span>&nbsp;FLIGHT400 Lab
   </a>
 
-  <!-- Navigation links -->
-  <nav class="ibm-header-nav" aria-label="FLIGHT400 Lab navigation">
-    <ul class="ibm-header-menu-bar" role="menubar" aria-label="FLIGHT400 Lab menu">
-      <li role="none">
-        <a class="ibm-header-menu-item" href="#tracks-section" role="menuitem" tabindex="0">
-          Tracks
-        </a>
-      </li>
-      <li role="none">
-        <a class="ibm-header-menu-item" href="https://bob.ibm.com/download"
-           target="_blank" rel="noopener" role="menuitem" tabindex="0">
-          Download Bob IDE
-        </a>
-      </li>
-    </ul>
-  </nav>
-
   <!-- Global actions — right side of header -->
   <div class="ibm-header-global" role="toolbar" aria-label="Header global actions">
     <button class="ibm-header-action" type="button"
@@ -221,14 +204,58 @@
   </div>
 </section>
 
-<footer>Made with IBM Bob &nbsp;&middot;&nbsp; FLIGHT400 Lab &nbsp;&middot;&nbsp; IBM i Modernization</footer>
+<footer class="ibm-page-footer">
+  <div class="ibm-page-footer__brand">
+    <!-- IBM logo — official Carbon IBM wordmark path -->
+    <svg class="ibm-page-footer__logo" xmlns="http://www.w3.org/2000/svg"
+         width="54" height="23" viewBox="0 0 54 23"
+         fill="currentColor" aria-label="IBM" role="img">
+      <!-- I: full bars rows 1/3/5; centre stub rows 2/4 -->
+      <path d="M0 0h8v3H0zM3 4h2v3H3zM0 8h8v3H0zM3 12h2v3H3zM0 16h8v3H0z"/>
+      <!-- B: full bars rows 1/3/5; left+right stubs rows 2/4 -->
+      <path d="M11 0h10v3H11zM11 4h3v3h-3zM18 4h3v3h-3zM11 8h10v3H11zM11 12h3v3h-3zM18 12h3v3h-3zM11 16h10v3H11z"/>
+      <!-- M: full bars rows 1/3/5; 4 stubs row 2; 2 stubs row 4 -->
+      <path d="M22 0h14v3H22zM22 4h3v3h-3zM27 4h2v3h-2zM31 4h3v3h-3zM22 8h14v3H22zM22 12h3v3h-3zM33 12h3v3h-3zM22 16h14v3H22z"/>
+    </svg>
+    <span class="ibm-page-footer__name">FLIGHT400 Lab &nbsp;·&nbsp; IBM i Modernization</span>
+  </div>
+  <ul class="ibm-page-footer__links">
+    <li><a href="https://bob.ibm.com" target="_blank" rel="noopener">IBM Bob</a></li>
+    <li><a href="https://www.ibm.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
+  </ul>
+</footer>
 
 </main><!-- #main-content -->
 
-<!-- ═══ STUDENT BADGE ═════════════════════════════════════ -->
-<div class="student-badge hidden" id="gf-student-badge" aria-live="polite">
-  <div class="student-badge-name" id="student-badge-name"></div>
-  <button class="student-badge-clear" id="student-badge-clear" title="Clear selection" aria-label="Clear student selection">✕</button>
+<!-- ═══ STUDENT TOAST ═══════════════════════════════════════════════════════
+     Hidden by default. JS adds .cds-toast--visible when a student is selected.
+═══════════════════════════════════════════════════════════════════════════ -->
+<div class="cds-toast" id="gf-student-badge" role="status" aria-live="polite" aria-atomic="true">
+
+  <!-- User avatar icon (User 20) -->
+  <div class="cds-toast__icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+         viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M16 4a6 6 0 1 1-6 6 6 6 0 0 1 6-6m0-2a8 8 0 1 0 8 8 8 8 0 0 0-8-8zM28 30H26v-2a6 6 0 0 0-6-6H12a6 6 0 0 0-6 6v2H4v-2a8 8 0 0 1 8-8h8a8 8 0 0 1 8 8z"/>
+    </svg>
+  </div>
+
+  <!-- Text -->
+  <div class="cds-toast__content">
+    <p class="cds-toast__caption">Student selected</p>
+    <p class="cds-toast__title" id="student-badge-name"></p>
+    <p class="cds-toast__subtitle" id="student-badge-subtitle"></p>
+  </div>
+
+  <!-- Close / clear -->
+  <button class="cds-toast__close" id="student-badge-clear"
+          type="button" title="Clear selection" aria-label="Clear student selection">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+         viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4L17.4 16z"/>
+    </svg>
+  </button>
+
 </div>
 
 <script src="js/app.js"></script>
