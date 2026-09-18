@@ -14,30 +14,30 @@
 
   function openNtb(startTab) {
     if (!ntbOverlay) return;
-    ntbOverlay.classList.add('active');
+    ntbOverlay.classList.add('is-open');
     if (startTab) ntbSwitchTab(startTab);
     var closeBtn = document.getElementById('ntb-close');
     if (closeBtn) closeBtn.focus();
   }
   function closeNtb() {
-    if (ntbOverlay) ntbOverlay.classList.remove('active');
+    if (ntbOverlay) ntbOverlay.classList.remove('is-open');
   }
   function ntbSwitchTab(num) {
-    var panels = ntbOverlay.querySelectorAll('.ntb-panel');
-    var tabs   = ntbOverlay.querySelectorAll('.ntb-tab');
-    panels.forEach(function (p) { p.classList.remove('ntb-panel-active'); });
+    var panels = ntbOverlay.querySelectorAll('.cds-tab-panel');
+    var tabs   = ntbOverlay.querySelectorAll('.cds-tab');
+    panels.forEach(function (p) { p.classList.remove('cds-tab-panel--active'); });
     tabs.forEach(function (t) {
-      t.classList.remove('ntb-tab-active');
+      t.classList.remove('cds-tab--selected');
       t.setAttribute('aria-selected', 'false');
     });
     var activePanel = document.getElementById('ntb-panel-' + num);
     var activeTab   = document.getElementById('ntb-tab-' + num);
-    if (activePanel) activePanel.classList.add('ntb-panel-active');
-    if (activeTab)   { activeTab.classList.add('ntb-tab-active'); activeTab.setAttribute('aria-selected', 'true'); }
+    if (activePanel) activePanel.classList.add('cds-tab-panel--active');
+    if (activeTab)   { activeTab.classList.add('cds-tab--selected'); activeTab.setAttribute('aria-selected', 'true'); }
     tabs.forEach(function (t) {
       var n = parseInt(t.getAttribute('data-ntb-tab'), 10);
-      if (n < num) t.classList.add('ntb-tab-done');
-      else t.classList.remove('ntb-tab-done');
+      if (n < num) t.classList.add('cds-tab--done');
+      else t.classList.remove('cds-tab--done');
     });
   }
 
