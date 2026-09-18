@@ -17,6 +17,54 @@
 </head>
 <body>
 
+<!-- ═══ UISHELL HEADER ══════════════════════════════════════════════════ -->
+<header class="ibm-header" role="banner" aria-label="FLIGHT400 Lab">
+
+  <!-- Skip-to-content link — accessibility requirement -->
+  <a class="ibm-skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- IBM wordmark + product name -->
+  <a class="ibm-header-name" href="." aria-label="IBM FLIGHT400 Lab, return to home">
+    <span class="ibm-header-name-prefix">IBM</span>&nbsp;FLIGHT400 Lab
+  </a>
+
+  <!-- Navigation links -->
+  <nav class="ibm-header-nav" aria-label="FLIGHT400 Lab navigation">
+    <ul class="ibm-header-menu-bar" role="menubar" aria-label="FLIGHT400 Lab menu">
+      <li role="none">
+        <a class="ibm-header-menu-item" href="#tracks-section" role="menuitem" tabindex="0">
+          Tracks
+        </a>
+      </li>
+      <li role="none">
+        <a class="ibm-header-menu-item" href="https://bob.ibm.com/download"
+           target="_blank" rel="noopener" role="menuitem" tabindex="0">
+          Download Bob IDE
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Global actions — right side of header -->
+  <div class="ibm-header-global" role="toolbar" aria-label="Header global actions">
+    <button class="ibm-header-action" type="button"
+            id="new-to-bob-btn"
+            aria-label="New to Bob? Get started"
+            title="New to Bob?">
+      <!-- Help (20px) — matches Carbon header icon size -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+           viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+        <path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"/>
+        <path d="M17 22h-2v-8h2zM17 12h-2v-2h2z"/>
+      </svg>
+    </button>
+  </div>
+
+</header>
+
+<!-- ═══ MAIN CONTENT (offset for fixed header) ═══════════════════════════ -->
+<main id="main-content">
+
 <!-- ═══ HERO ═════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-badge" id="hero-badge">
@@ -139,6 +187,8 @@
 </section>
 
 <footer id="page-footer">Made with IBM Bob &nbsp;&middot;&nbsp; FLIGHT400 Lab &nbsp;&middot;&nbsp; IBM</footer>
+
+</main><!-- #main-content -->
 
 <!-- ═══ STUDENT BADGE ═════════════════════════════════════ -->
 <div class="student-badge hidden" id="gf-student-badge" aria-live="polite">

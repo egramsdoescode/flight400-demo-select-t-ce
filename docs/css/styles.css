@@ -133,6 +133,147 @@
   --cds-shell-header-item-active:#262626;
 }
 
+/* ── SKIP LINK (accessibility) ─────────────────────────────────────────── */
+.ibm-skip-link {
+  position: absolute;
+  top: -40px; left: 0;
+  background: var(--cds-background);
+  color: var(--cds-link-primary);
+  font-size: 0.875rem;
+  padding: var(--cds-spacing-03) var(--cds-spacing-05);
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 100ms var(--cds-motion-standard);
+}
+.ibm-skip-link:focus { top: 0; }
+
+/* ── UISHELL HEADER ────────────────────────────────────────────────────── */
+/* Carbon spec: height 48px, $background (#161616), border-bottom $border-subtle-01 */
+.ibm-header {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 8000;
+  height: 48px;
+  background: var(--cds-shell-header-bg);
+  border-bottom: 1px solid var(--cds-shell-header-border);
+  display: flex;
+  align-items: stretch;
+  /* Carbon UIShell shadow — subtle on g100 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+/* IBM product name link — left side */
+.ibm-header-name {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--cds-spacing-05);
+  /* Carbon: $productive-heading-01 — 0.875rem / 400 */
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: var(--cds-font-family-sans);
+  color: var(--cds-shell-header-text);
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+  border-right: 1px solid var(--cds-shell-header-border);
+  min-width: 0;
+  transition: background-color 110ms var(--cds-motion-standard);
+}
+.ibm-header-name:hover {
+  background-color: var(--cds-shell-header-item-hover);
+  color: var(--cds-shell-header-text);
+}
+.ibm-header-name:focus-visible {
+  outline: 2px solid var(--cds-shell-header-focus);
+  outline-offset: -2px;
+}
+/* "IBM" is SemiBold 600 — the product name suffix is 400 */
+.ibm-header-name-prefix {
+  font-weight: 600;
+}
+
+/* Navigation bar — center / left of header */
+.ibm-header-nav {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+}
+.ibm-header-menu-bar {
+  display: flex;
+  align-items: stretch;
+  list-style: none;
+  padding: 0; margin: 0;
+  height: 100%;
+}
+.ibm-header-menu-bar li { display: flex; align-items: stretch; }
+
+/* Carbon header nav item */
+.ibm-header-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--cds-spacing-05);
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: var(--cds-font-family-sans);
+  color: var(--cds-shell-header-link);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition:
+    background-color 110ms var(--cds-motion-standard),
+    color           110ms var(--cds-motion-standard),
+    border-color    110ms var(--cds-motion-standard);
+  outline: none;
+}
+.ibm-header-menu-item:hover {
+  background-color: var(--cds-shell-header-item-hover);
+  color: var(--cds-shell-header-link-hover);
+}
+.ibm-header-menu-item:focus-visible {
+  outline: 2px solid var(--cds-shell-header-focus);
+  outline-offset: -2px;
+}
+/* Active / current page indicator — 2px border-bottom in $focus */
+.ibm-header-menu-item--active {
+  border-bottom-color: var(--cds-shell-header-focus);
+  color: var(--cds-shell-header-text);
+  background-color: var(--cds-shell-header-item-active);
+}
+
+/* Global actions — right side, 48×48px icon buttons */
+.ibm-header-global {
+  display: flex;
+  align-items: stretch;
+  margin-left: auto;
+  border-left: 1px solid var(--cds-shell-header-border);
+}
+.ibm-header-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; height: 48px;
+  background: transparent;
+  border: none; border-radius: 0;
+  color: var(--cds-shell-header-icon);
+  cursor: pointer;
+  transition: background-color 110ms var(--cds-motion-standard);
+  flex-shrink: 0;
+  outline: none;
+}
+.ibm-header-action:hover  { background-color: var(--cds-shell-header-item-hover); }
+.ibm-header-action:active { background-color: var(--cds-shell-header-item-active); }
+.ibm-header-action:focus-visible {
+  outline: 2px solid var(--cds-shell-header-focus);
+  outline-offset: -2px;
+}
+
+/* ── MAIN CONTENT — offset for fixed header ─────────────────────────────── */
+main {
+  padding-top: 48px;   /* matches .ibm-header height */
+  min-height: 100dvh;
+  background: var(--cds-background);
+}
+
+/* ── GLOBAL SCROLL ────────────────────────────────────────────────────────── */
 html { scroll-behavior: smooth; }
 
 body {
