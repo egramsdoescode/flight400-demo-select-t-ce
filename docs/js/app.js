@@ -183,11 +183,11 @@
       }
     });
 
-    // Copy buttons — matches .copy-btn (legacy) and .cds-copy-btn (phase 4)
+    // Copy buttons — matches .cds-code-snippet__copy-btn (phase 6)
     document.addEventListener('click', function (e) {
-      var btn = e.target.closest('.copy-btn, .cds-copy-btn');
+      var btn = e.target.closest('.cds-code-snippet__copy-btn');
       if (!btn) return;
-      var box = btn.closest('.step-prompt, .prompt-box, .code-block');
+      var box = btn.closest('.cds-code-snippet');
       var pre = box ? box.querySelector('pre') : null;
       var text = pre ? pre.textContent : '';
       if (!text) return;
@@ -291,8 +291,8 @@
       pre.textContent = replaceTokens(getOriginal(pre), num, nn, libNum, port);
     });
 
-    // Replace in step descriptions and info boxes (text nodes only — skip code/pre)
-    root.querySelectorAll('.step-desc, .uc-desc, .info-box, .warn-box, .detail-intro, .data-table td, .step-screenshot-caption').forEach(function (el) {
+    // Replace in step descriptions and notification content (text nodes only — skip code/pre)
+    root.querySelectorAll('.cds-progress-step__desc, .uc-desc, .cds-inline-notification__subtitle, .detail-intro, .cds-data-table td, .cds-step-screenshot figcaption').forEach(function (el) {
       replaceTextNodes(el, num, nn, libNum, port);
     });
   }
@@ -335,12 +335,12 @@
     var table = document.getElementById('attendee-table');
     if (!table) return;
     table.querySelectorAll('tbody tr').forEach(function (row) {
-      row.classList.remove('attendee-selected');
+      row.classList.remove('is-selected');
     });
     var rows = table.querySelectorAll('tbody tr');
     var target = rows[num - 1];
     if (target) {
-      target.classList.add('attendee-selected');
+      target.classList.add('is-selected');
       target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
@@ -385,20 +385,13 @@
     document.body.removeChild(ta);
   }
   function markCopied(btn) {
-    // Preserve child nodes (icons) for .cds-copy-btn; fall back to text for legacy .copy-btn
-    var hasSvg = btn.querySelector('svg');
-    if (hasSvg) {
-      // Icon button — just toggle the copied class; CSS handles visual feedback
-      btn.classList.add('copied');
-      setTimeout(function () { btn.classList.remove('copied'); }, 2000);
-    } else {
-      btn.textContent = '✓ Copied';
-      btn.classList.add('copied');
-      setTimeout(function () {
-        btn.textContent = 'Copy';
-        btn.classList.remove('copied');
-      }, 2000);
-    }
+    // Swap icon to Checkmark16
+    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M13 24L4 15l1.4-1.4L13 21.2 26.6 7.6 28 9z"/></svg>';
+    btn.classList.add('cds-code-snippet__copy-btn--copied');
+    setTimeout(function () {
+      btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28 10v18H10V10h18m0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM4 18H2V4a2 2 0 0 1 2-2h14v2H4z"/></svg>';
+      btn.classList.remove('cds-code-snippet__copy-btn--copied');
+    }, 2000);
   }
 
   // ── ESCAPE KEY ────────────────────────────────────────────────────────────

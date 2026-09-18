@@ -992,176 +992,338 @@ pre, code, kbd, samp {
   font-family: var(--cds-font-family-sans);
 }
 
-/* ── MODE STEPS ── */
-.mode-steps { margin-top: var(--cds-spacing-04); display: flex; flex-direction: column; gap: var(--cds-spacing-03); }
-.mode-step {
-  display: flex; gap: var(--cds-spacing-04); align-items: flex-start;
-  background: var(--cds-layer-01); border: 1px solid var(--cds-border-subtle-01);
-  border-radius: 0; padding: var(--cds-spacing-04) var(--cds-spacing-05);
-}
-.step-num {
-  width: 24px; height: 24px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.75rem; font-weight: 600; flex-shrink: 0;
-  background: var(--cds-interactive);
-  color: var(--cds-text-on-color); margin-top: 1px;
-}
+/* ══════════════════════════════════════════════════════════════════════════
+   CARBON PROGRESS INDICATOR — VERTICAL
+   Spec: https://carbondesignsystem.com/components/progress-indicator/style/
+   Used for numbered step lists within track accordions.
+   Step circle: 24px, $interactive blue only (never per-track colors)
+   Connector line: 1px $border-subtle-01
+   ══════════════════════════════════════════════════════════════════════════ */
 
-.step-body { flex: 1; min-width: 0; }
-/* Carbon $label-01 */
-.step-title { font-size: 0.875rem; font-weight: 600; color: var(--cds-text-primary); margin-bottom: var(--cds-spacing-02); line-height: 1.4; }
-/* Carbon $helper-text-01 */
-.step-desc  { font-size: 0.875rem; color: var(--cds-text-secondary); line-height: 1.5; margin-bottom: var(--cds-spacing-04); }
-.step-desc:last-child { margin-bottom: 0; }
-
-/* ── PROMPT / CODE BLOCK — Carbon CodeSnippet-inspired ── */
-.step-prompt {
-  background: #1e1e1e;  /* Carbon $layer-02 on Gray 100 is #393939 — but code use slightly darker */
-  border-radius: 0;
-  border: 1px solid var(--cds-border-strong-01);
-  padding: var(--cds-spacing-04) var(--cds-spacing-05); position: relative; margin-top: var(--cds-spacing-03);
-}
-.step-prompt pre {
-  color: #c6c6c6;
-  font-size: 0.875rem;
-  white-space: pre-wrap; word-break: break-word; line-height: 1.5;
-  padding-right: 64px;
-}
-.step-prompt .copy-btn { top: var(--cds-spacing-03); right: var(--cds-spacing-03); }
-
-/* Carbon copy button — legacy .copy-btn + new .cds-copy-btn (phase 4) */
-.copy-btn,
-.cds-copy-btn {
-  position: absolute; top: var(--cds-spacing-04); right: var(--cds-spacing-04);
-  background: transparent;
-  border: 1px solid var(--cds-border-strong-01);
-  color: var(--cds-text-secondary); font-size: 0.75rem; font-weight: 400;
-  font-family: var(--cds-font-family-sans);
-  letter-spacing: 0;
-  padding: 6px var(--cds-spacing-05); border-radius: 0;
-  cursor: pointer; min-height: 32px; min-width: 44px;
-  transition: background 70ms var(--cds-motion-standard), color 70ms var(--cds-motion-standard);
-}
-.copy-btn:hover,
-.cds-copy-btn:hover { background: var(--cds-layer-02); color: var(--cds-text-primary); }
-.copy-btn:active,
-.cds-copy-btn:active { background: var(--cds-border-subtle-01); }
-.copy-btn.copied,
-.cds-copy-btn.copied {
-  background: rgba(66,190,101,0.12);
-  border-color: rgba(66,190,101,0.45);
-  color: #42be65;
-}
-
-/* ── NOTIFICATION BOXES — Carbon InlineNotification tokens ── */
-.info-box {
-  margin-top: var(--cds-spacing-04);
-  background: rgba(69,137,255,0.08);
-  border: 1px solid rgba(69,137,255,0.30);
-  border-left: 3px solid var(--cds-interactive);
-  border-radius: 0; padding: var(--cds-spacing-04) var(--cds-spacing-05);
-  font-size: 0.875rem; color: var(--cds-text-secondary); line-height: 1.5;
-}
-.info-box strong { color: var(--cds-text-primary); }
-
-.warn-box {
-  margin-top: var(--cds-spacing-04);
-  background: rgba(241,194,27,0.06);
-  border: 1px solid rgba(241,194,27,0.30);
-  border-left: 3px solid var(--cds-link-primary);
-  border-radius: 0; padding: var(--cds-spacing-04) var(--cds-spacing-05);
-  font-size: 0.875rem; color: var(--cds-text-secondary); line-height: 1.5;
-}
-
-/* Expected findings list */
-.findings-list {
-  margin: var(--cds-spacing-03) 0 0;
-  padding-bottom: 0;
+.cds-progress-list {
   list-style: none;
+  padding: 0; margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--cds-spacing-02);
-}
-.findings-list li {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  padding: var(--cds-spacing-03) var(--cds-spacing-04);
-  border-radius: 0;
-  border-left: 3px solid transparent;
-}
-.finding-error {
-  background: rgba(250,77,86,0.07);
-  border-left-color: rgba(250,77,86,0.55);
-  color: var(--cds-text-secondary);
-}
-.finding-warn {
-  background: rgba(241,194,27,0.07);
-  border-left-color: rgba(241,194,27,0.50);
-  color: var(--cds-text-secondary);
-}
-.finding-ok {
-  background: rgba(66,190,101,0.07);
-  border-left-color: rgba(66,190,101,0.50);
-  color: var(--cds-text-secondary);
-}
-.finding-tip {
-  background: rgba(69,137,255,0.07);
-  border-left-color: rgba(69,137,255,0.35);
-  color: var(--cds-text-secondary);
-}
-
-/* Step screenshot */
-.step-screenshot {
+  gap: 0;
   margin-top: var(--cds-spacing-04);
-  margin-bottom: var(--cds-spacing-04);
-  border: 1px solid var(--cds-border-subtle-01);
-  border-radius: 0; overflow: hidden; max-width: 520px;
-}
-.step-screenshot img { display: block; width: 100%; height: auto; }
-.step-screenshot-caption {
-  font-size: 0.75rem; color: var(--cds-text-secondary);
-  background: var(--cds-layer-01); padding: var(--cds-spacing-02) var(--cds-spacing-04);
-  text-align: center; border-top: 1px solid var(--cds-border-subtle-01);
 }
 
-/* ── DATA TABLE — Carbon DataTable tokens ── */
-.data-table {
-  width: 100%; border-collapse: collapse;
-  font-size: 0.875rem; margin-top: var(--cds-spacing-04); margin-bottom: var(--cds-spacing-02);
-  border: 1px solid var(--cds-border-subtle-01); border-radius: 0;
+.cds-progress-step {
+  display: flex;
+  gap: var(--cds-spacing-05);
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: var(--cds-spacing-06);
+}
+
+/* Vertical connector line — runs from bottom of circle to top of next circle */
+.cds-progress-step::before {
+  content: '';
+  position: absolute;
+  left: 11px;                    /* center of 24px circle */
+  top: 24px;
+  bottom: var(--cds-spacing-03);
+  width: 1px;
+  background: var(--cds-border-subtle-01);
+}
+.cds-progress-step:last-child::before { display: none; }
+
+/* Step circle */
+.cds-progress-step__circle {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* ALWAYS $interactive — never per-track colors */
+  background: var(--cds-interactive);
+  color: var(--cds-text-on-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--cds-font-family-sans);
+  position: relative;
+  z-index: 1;
+  margin-top: 2px;               /* optical alignment with step title */
+}
+
+/* Complete step — green circle with checkmark */
+.cds-progress-step--complete .cds-progress-step__circle {
+  background: var(--cds-support-success);
+}
+
+/* Step body */
+.cds-progress-step__body { flex: 1; min-width: 0; }
+
+/* Carbon $body-compact-02: 0.875rem / 600 */
+.cds-progress-step__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cds-text-primary);
+  line-height: 1.4;
+  margin-bottom: var(--cds-spacing-02);
+  font-family: var(--cds-font-family-sans);
+}
+
+/* Carbon $helper-text-01: 0.875rem / 400 */
+.cds-progress-step__desc {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--cds-spacing-04);
+  font-family: var(--cds-font-family-sans);
+}
+.cds-progress-step__desc:last-child { margin-bottom: 0; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CARBON CODE SNIPPET — MULTI-LINE
+   Spec: https://carbondesignsystem.com/components/code-snippet/style/
+   - Background: $layer-02
+   - Border: 1px $border-subtle-01
+   - Copy button: 40×40 ghost icon button, absolute top-right
+   - Pre: IBM Plex Mono, 0.875rem, $text-primary
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.cds-code-snippet {
+  position: relative;
+  background: var(--cds-layer-02);
+  border: 1px solid var(--cds-border-subtle-01);
+  border-radius: 0;
+  margin-top: var(--cds-spacing-04);
   overflow: hidden;
 }
-.data-table th {
-  background: var(--cds-layer-02); color: var(--cds-text-secondary);
-  font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.04em; text-transform: uppercase;
-  padding: var(--cds-spacing-03) var(--cds-spacing-05);
-  border-bottom: 1px solid var(--cds-border-strong-01);
-  text-align: left;
-}
-.data-table td {
-  padding: var(--cds-spacing-03) var(--cds-spacing-05);
-  border-bottom: 1px solid var(--cds-border-subtle-01);
-  color: var(--cds-text-primary); font-variant-numeric: tabular-nums;
-}
-.data-table tr:last-child td { border-bottom: none; }
-.data-table tbody tr { cursor: pointer; transition: background 70ms var(--cds-motion-standard); }
-.data-table tbody tr:hover td { background: #2c2c2c; }  /* $layer-hover-01 on g100 */
-.data-table tbody tr.attendee-selected td { background: rgba(69,137,255,0.10); }
-.data-table tbody tr.attendee-selected td:first-child { border-left: 3px solid var(--cds-interactive); padding-left: 13px; }
-.data-table code { color: #78a9ff; }
 
-/* SQL / code block */
-.code-block {
-  background: #1e1e1e; border-radius: 0;
-  padding: var(--cds-spacing-04) var(--cds-spacing-05); margin-top: var(--cds-spacing-04);
-  border: 1px solid var(--cds-border-strong-01);
+.cds-code-snippet pre {
+  font-family: var(--cds-font-family-mono);
+  font-size: 0.875rem;
+  line-height: 1.428;
+  color: var(--cds-text-primary);
+  padding: var(--cds-spacing-05);
+  /* Right padding makes room for the copy button */
+  padding-right: 56px;
+  white-space: pre-wrap;
+  word-break: break-word;
   overflow-x: auto;
-  position: relative;
+  margin: 0;
 }
-.code-block pre {
-  color: #c6c6c6; font-size: 0.875rem;
-  white-space: pre; line-height: 1.5;
+
+/* Copy button — 40×40 icon ghost button, absolute top-right */
+.cds-code-snippet__copy-btn {
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--cds-border-subtle-01);
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+  border-radius: 0;
+  color: var(--cds-icon-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color 70ms var(--cds-motion-standard),
+    color            70ms var(--cds-motion-standard);
+}
+.cds-code-snippet__copy-btn svg { width: 16px; height: 16px; display: block; }
+.cds-code-snippet__copy-btn:hover {
+  background: var(--cds-layer-hover-02);
+  color: var(--cds-icon-primary);
+}
+.cds-code-snippet__copy-btn:focus-visible {
+  outline: 2px solid var(--cds-focus);
+  outline-offset: -2px;
+}
+/* Copied state — green tick */
+.cds-code-snippet__copy-btn--copied {
+  color: var(--cds-support-success);
+  background: rgba(66, 190, 101, 0.10);
+  border-color: rgba(66, 190, 101, 0.30);
+}
+
+/* Inline code (inside prose text) */
+code:not(pre code) {
+  font-family: var(--cds-font-family-mono);
+  font-size: 0.875em;
+  color: var(--cds-link-primary);
+  background: var(--cds-layer-02);
+  padding: 1px var(--cds-spacing-02);
+  border-radius: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CARBON INLINE NOTIFICATION
+   Spec: https://carbondesignsystem.com/components/notification/style/
+   Structure: icon (20px) + text content + optional close button
+   Left border: 3px solid semantic color
+   Background: semantic color at ~8% opacity
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.cds-inline-notification {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--cds-spacing-04);
+  padding: var(--cds-spacing-04) var(--cds-spacing-05);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 0;
+  margin-top: var(--cds-spacing-05);
+  position: relative;
+  font-family: var(--cds-font-family-sans);
+}
+
+/* Icon — always 20px, top-aligned with text */
+.cds-inline-notification__icon {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  margin-top: 1px;   /* optical alignment with first line of text */
+}
+
+/* Text container */
+.cds-inline-notification__text { flex: 1; min-width: 0; }
+
+/* Carbon $body-compact-01: 0.875rem / 400 */
+.cds-inline-notification__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cds-text-primary);
+  line-height: 1.4;
+  margin-bottom: var(--cds-spacing-02);
+}
+
+.cds-inline-notification__subtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--cds-text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Info ── */
+.cds-inline-notification--info {
+  background: rgba(69, 137, 255, 0.10);
+  border-color: var(--cds-support-info);
+  border-left-width: 3px;
+}
+.cds-inline-notification--info .cds-inline-notification__icon { color: var(--cds-support-info); }
+
+/* ── Warning ── */
+.cds-inline-notification--warning {
+  background: rgba(241, 194, 27, 0.10);
+  border-color: var(--cds-support-warning);
+  border-left-width: 3px;
+}
+.cds-inline-notification--warning .cds-inline-notification__icon { color: var(--cds-support-warning); }
+
+/* ── Error ── */
+.cds-inline-notification--error {
+  background: rgba(250, 77, 86, 0.10);
+  border-color: var(--cds-support-error);
+  border-left-width: 3px;
+}
+.cds-inline-notification--error .cds-inline-notification__icon { color: var(--cds-support-error); }
+
+/* ── Success ── */
+.cds-inline-notification--success {
+  background: rgba(66, 190, 101, 0.10);
+  border-color: var(--cds-support-success);
+  border-left-width: 3px;
+}
+.cds-inline-notification--success .cds-inline-notification__icon { color: var(--cds-support-success); }
+
+/* ── Step Screenshot ──────────────────────────────────────────────────────── */
+.cds-step-screenshot {
+  margin-top: var(--cds-spacing-05);
+  margin-bottom: var(--cds-spacing-05);
+  border: 1px solid var(--cds-border-subtle-01);
+  border-radius: 0;
+  overflow: hidden;
+  max-width: 560px;
+}
+.cds-step-screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cds-step-screenshot figcaption {
+  font-size: 0.75rem;
+  color: var(--cds-text-secondary);
+  background: var(--cds-layer-02);
+  padding: var(--cds-spacing-02) var(--cds-spacing-04);
+  text-align: left;
+  border-top: 1px solid var(--cds-border-subtle-01);
+  font-family: var(--cds-font-family-sans);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CARBON DATA TABLE
+   Spec: https://carbondesignsystem.com/components/data-table/style/
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.cds-data-table-wrap {
+  overflow-x: auto;
+  margin-top: var(--cds-spacing-05);
+}
+
+.cds-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--cds-layer-01);
+  border: 1px solid var(--cds-border-subtle-01);
+  border-radius: 0;
+}
+
+/* Column header — $layer-02 background */
+.cds-data-table thead tr {
+  background: var(--cds-layer-02);
+  border-bottom: 1px solid var(--cds-border-strong-01);
+}
+
+.cds-data-table th {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cds-text-secondary);
+  letter-spacing: 0.16px;
+  text-align: left;
+  padding: var(--cds-spacing-04) var(--cds-spacing-05);
+  white-space: nowrap;
+  font-family: var(--cds-font-family-sans);
+}
+
+.cds-data-table td {
+  font-size: 0.875rem;
+  color: var(--cds-text-primary);
+  padding: var(--cds-spacing-04) var(--cds-spacing-05);
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+  font-family: var(--cds-font-family-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.cds-data-table tr:last-child td { border-bottom: none; }
+
+/* Row hover — $layer-hover-01 */
+.cds-data-table tbody tr {
+  cursor: pointer;
+  transition: background-color 70ms var(--cds-motion-standard);
+}
+.cds-data-table tbody tr:hover td { background: var(--cds-layer-hover-01); }
+
+/* Selected row */
+.cds-data-table tbody tr.is-selected td {
+  background: var(--cds-layer-selected-01);
+}
+.cds-data-table tbody tr.is-selected td:first-child {
+  border-left: 3px solid var(--cds-interactive);
+  padding-left: calc(var(--cds-spacing-05) - 2px);
+}
+
+.cds-data-table code {
+  font-family: var(--cds-font-family-mono);
+  font-size: 0.875em;
+  color: var(--cds-link-primary);
 }
 
 /* ── NTB MODAL — Carbon Modal tokens ── */
