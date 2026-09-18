@@ -979,8 +979,47 @@ pre, code, kbd, samp {
   min-height: 0;
   overflow: hidden;
 }
+/* Do NOT set overflow:hidden on the inner div — it clips outside-positioned
+   list bullets and causes duplication artifacts during the grid-row animation. */
+.cds-accordion-content-inner > div {
+  overflow: visible;
+}
 .cds-accordion-content-inner > * {
   padding: var(--cds-spacing-04) var(--cds-spacing-05) var(--cds-spacing-05);
+}
+
+/* Plain <ul> bullet lists inside accordion content (e.g. step 3b field list).
+   IBM's global www.css injects an absolute-positioned ::before bullet AND sets
+   list-style-type on li — both must be suppressed and replaced with a flex-based
+   layout so the bullet and text share a baseline and are never clipped by the
+   overflow:hidden on .cds-accordion-content-inner. */
+.cds-accordion-content-inner ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0.4rem 0 0.75rem 1.25rem;
+}
+.cds-accordion-content-inner ul li {
+  list-style: none !important;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 0.4em !important;
+  padding-left: 0 !important;
+  position: static !important;
+}
+.cds-accordion-content-inner ul li::before {
+  content: "•" !important;
+  position: static !important;
+  display: inline !important;
+  flex-shrink: 0 !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: var(--cds-text-secondary) !important;
+  width: auto !important;
+  top: auto !important;
+  left: auto !important;
+}
+.cds-accordion-content-inner ul li::marker {
+  content: none !important;
 }
 
 /* Short description below accordion heading, inside content */
