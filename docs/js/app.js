@@ -132,34 +132,34 @@
       }
     }
 
-    var cards = document.querySelectorAll('.bubble-card');
+    var cards = document.querySelectorAll('.cds-tile');
 
-    // Bubble pop-in via IntersectionObserver
+    // Fade-in entrance via IntersectionObserver
     if ('IntersectionObserver' in window) {
       var cardObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             var idx = Array.prototype.indexOf.call(cards, entry.target);
-            var delay = Math.min(idx * 60, 420);
-            setTimeout(function (t) { t.classList.add('bubble-in'); }, delay, entry.target);
+            var delay = Math.min(idx * 60, 300);
+            setTimeout(function (t) { t.classList.add('cds-tile--visible'); }, delay, entry.target);
             cardObserver.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.10 });
+      }, { threshold: 0.05 });
       cards.forEach(function (card) { cardObserver.observe(card); });
     } else {
-      cards.forEach(function (card) { card.classList.add('bubble-in'); });
+      cards.forEach(function (card) { card.classList.add('cds-tile--visible'); });
     }
 
     // Card toggle: click summary to open/close
     cards.forEach(function (card) {
-      var summary = card.querySelector('.card-summary');
+      var summary = card.querySelector('.cds-tile-summary');
       if (!summary) return;
       summary.addEventListener('click', function () {
-        var isOpen = card.classList.contains('open');
-        cards.forEach(function (c) { c.classList.remove('open'); });
+        var isOpen = card.classList.contains('cds-tile--expanded');
+        cards.forEach(function (c) { c.classList.remove('cds-tile--expanded'); });
         if (!isOpen) {
-          card.classList.add('open');
+          card.classList.add('cds-tile--expanded');
           setTimeout(function () {
             card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }, 100);
@@ -167,16 +167,20 @@
       });
     });
 
-    // Use-case accordion inside cards
+    // Accordion inside cards
     document.addEventListener('click', function (e) {
-      var header = e.target.closest('.use-case-header');
-      if (!header) return;
-      var uc = header.closest('.use-case');
-      var isOpen = uc.classList.contains('uc-open');
-      uc.closest('.use-cases').querySelectorAll('.use-case').forEach(function (s) {
-        s.classList.remove('uc-open');
+      var heading = e.target.closest('.cds-accordion-heading');
+      if (!heading) return;
+      var item = heading.closest('.cds-accordion-item');
+      var isOpen = item.classList.contains('cds-accordion-item--open');
+      item.closest('.cds-accordion').querySelectorAll('.cds-accordion-item').forEach(function (s) {
+        s.classList.remove('cds-accordion-item--open');
+        s.querySelector('.cds-accordion-heading').setAttribute('aria-expanded', 'false');
       });
-      if (!isOpen) uc.classList.add('uc-open');
+      if (!isOpen) {
+        item.classList.add('cds-accordion-item--open');
+        heading.setAttribute('aria-expanded', 'true');
+      }
     });
 
     // Copy buttons — matches .copy-btn (legacy) and .cds-copy-btn (phase 4)
