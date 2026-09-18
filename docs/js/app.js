@@ -1,44 +1,5 @@
 (function () {
 
-  // ── STARFIELD ──────────────────────────────────────────────────────────────
-  var c = document.getElementById('stars-canvas');
-  var ctx = c.getContext('2d');
-  var W, H, stars = [];
-
-  function resizeStars() {
-    W = c.width  = window.innerWidth;
-    H = c.height = Math.max(document.body.scrollHeight, window.innerHeight);
-  }
-  function initStars() {
-    resizeStars();
-    stars = [];
-    for (var i = 0; i < 180; i++) {
-      stars.push({
-        x:  Math.random() * W,
-        y:  Math.random() * H,
-        r:  Math.random() * 1.4 + 0.3,
-        a:  Math.random(),
-        da: (Math.random() - 0.5) * 0.005
-      });
-    }
-  }
-  function drawStars() {
-    ctx.clearRect(0, 0, W, H);
-    for (var i = 0; i < stars.length; i++) {
-      var s = stars[i];
-      s.a = Math.max(0.08, Math.min(1, s.a + s.da));
-      if (s.a <= 0.08 || s.a >= 1) s.da *= -1;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(180,200,255,' + s.a + ')';
-      ctx.fill();
-    }
-    requestAnimationFrame(drawStars);
-  }
-  window.addEventListener('resize', initStars);
-  initStars();
-  drawStars();
-
   // ── HERO SCROLL CTA ────────────────────────────────────────────────────────
   var heroCtaBtn = document.getElementById('hero-cta-btn');
   if (heroCtaBtn) {
@@ -218,9 +179,9 @@
       if (!isOpen) uc.classList.add('uc-open');
     });
 
-    // Copy buttons
+    // Copy buttons — matches .copy-btn (legacy) and .cds-copy-btn (phase 4)
     document.addEventListener('click', function (e) {
-      var btn = e.target.closest('.copy-btn');
+      var btn = e.target.closest('.copy-btn, .cds-copy-btn');
       if (!btn) return;
       var box = btn.closest('.step-prompt, .prompt-box, .code-block');
       var pre = box ? box.querySelector('pre') : null;
@@ -420,12 +381,20 @@
     document.body.removeChild(ta);
   }
   function markCopied(btn) {
-    btn.textContent = '✓ Copied';
-    btn.classList.add('copied');
-    setTimeout(function () {
-      btn.textContent = 'Copy';
-      btn.classList.remove('copied');
-    }, 2000);
+    // Preserve child nodes (icons) for .cds-copy-btn; fall back to text for legacy .copy-btn
+    var hasSvg = btn.querySelector('svg');
+    if (hasSvg) {
+      // Icon button — just toggle the copied class; CSS handles visual feedback
+      btn.classList.add('copied');
+      setTimeout(function () { btn.classList.remove('copied'); }, 2000);
+    } else {
+      btn.textContent = '✓ Copied';
+      btn.classList.add('copied');
+      setTimeout(function () {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    }
   }
 
   // ── ESCAPE KEY ────────────────────────────────────────────────────────────

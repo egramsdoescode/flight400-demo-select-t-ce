@@ -108,8 +108,12 @@
 <!-- ═══ NEW-TO-BOB MODAL ══════════════════════════════════ -->
 <div class="ntb-overlay" id="ntb-overlay" role="dialog" aria-modal="true" aria-labelledby="ntb-title">
   <div class="ntb-modal">
-    <button class="ntb-close" id="ntb-close" aria-label="Close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    <button class="ibm-btn ibm-btn--ghost ibm-btn--icon-only ibm-btn--sm ntb-close"
+            id="ntb-close" aria-label="Close dialog" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+           viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+        <path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"/>
+      </svg>
     </button>
     <div class="ntb-tabs" role="tablist">
       <button class="ntb-tab ntb-tab-active" id="ntb-tab-1" role="tab" aria-selected="true" aria-controls="ntb-panel-1" data-ntb-tab="1">
@@ -145,9 +149,13 @@
             <div class="ntb-action-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           </a>
         </div>
-        <button class="ntb-next-btn" id="ntb-next-btn">
+        <button class="ibm-btn ibm-btn--primary" id="ntb-next-btn"
+                style="width:100%" type="button">
           I have Bob installed — next step
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+               viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+            <path d="M18 6 16.57 7.393l8.22 8.22H2v2h22.79l-8.22 8.22L18 27.273 27.273 18z"/>
+          </svg>
         </button>
       </div>
       <div class="ntb-panel" id="ntb-panel-2" role="tabpanel" aria-labelledby="ntb-tab-2">
@@ -184,8 +192,12 @@
           <div class="agenda-modal-sub" id="agenda-modal-sub"></div>
         </div>
       </div>
-      <button class="agenda-close" id="agenda-close" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      <button class="ibm-btn ibm-btn--ghost ibm-btn--icon-only ibm-btn--sm"
+              id="agenda-close" aria-label="Close dialog" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+             viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"/>
+        </svg>
       </button>
     </div>
     <div class="agenda-body" id="agenda-body"></div>

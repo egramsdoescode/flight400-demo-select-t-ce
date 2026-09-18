@@ -368,40 +368,214 @@ pre, code, kbd, samp {
   animation: ibm-fade-in 400ms var(--cds-motion-entrance) 400ms forwards;
 }
 
-/* Carbon Primary Button */
+/* ══════════════════════════════════════════════════════════════════════════
+   CARBON BUTTON SYSTEM
+   Spec: https://carbondesignsystem.com/components/button/style/
+   Key rules:
+   - border-radius: 0 always
+   - Icon is position:absolute, pinned to the right
+   - Default size (lg) = 48px min-height
+   - Padding: 0 63px 0 16px (lg with icon) — the 63px accounts for the 16px
+     icon + 16px from right + 16px left clearance
+   - Ghost button: no right padding offset (icon flows inline)
+   - Focus ring: 2px outline $focus, offset -4px, inset $focus-inset shadow
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── BASE ─────────────────────────────────────────────────────────────────── */
 .ibm-btn {
-  display: inline-flex; align-items: center; gap: var(--cds-spacing-04);
-  border: none; border-radius: 0;
-  padding: 13px var(--cds-spacing-07) 13px var(--cds-spacing-06);
-  font-size: 0.875rem; font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  /* icon-right padding: 16px left, 63px right (48px icon zone + 15px) */
+  padding: 0 63px 0 var(--cds-spacing-05);
+  min-height: 48px;             /* lg size — Carbon productive default */
+  border: none;
+  border-radius: 0;
   font-family: var(--cds-font-family-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
   letter-spacing: 0.16px;
+  line-height: 1;
+  text-decoration: none;
   cursor: pointer;
-  min-height: 48px;
-  transition: background 70ms var(--cds-motion-standard);
   position: relative;
+  white-space: nowrap;
+  outline: none;
+  transition:
+    background-color 70ms var(--cds-motion-standard),
+    box-shadow       70ms var(--cds-motion-standard),
+    color            70ms var(--cds-motion-standard),
+    border-color     70ms var(--cds-motion-standard);
+  /* Prevent text selection on rapid clicks */
+  user-select: none;
+  -webkit-user-select: none;
 }
+
+/* Icon — always 16×16, pinned to the absolute right */
+.ibm-btn > svg {
+  position: absolute;
+  right: var(--cds-spacing-05);
+  top: 50%;
+  transform: translateY(-50%);
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+/* Focus ring — Carbon on g100: white outline, dark inset */
 .ibm-btn:focus-visible {
-  outline: 2px solid #ffffff;
+  outline: 2px solid var(--cds-focus);
   outline-offset: -4px;
-  box-shadow: inset 0 0 0 1px #161616;
+  box-shadow: inset 0 0 0 1px var(--cds-focus-inset);
 }
 
+/* Disabled state */
+.ibm-btn:disabled,
+.ibm-btn[aria-disabled="true"] {
+  background-color: var(--cds-button-disabled) !important;
+  color: var(--cds-button-disabled-label) !important;
+  border-color: transparent !important;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* ── PRIMARY ──────────────────────────────────────────────────────────────── */
 .ibm-btn--primary {
-  background: var(--cds-button-primary);
-  color: #fff;
+  background-color: var(--cds-button-primary);
+  color: var(--cds-text-on-color);
 }
-.ibm-btn--primary:hover  { background: var(--cds-button-primary-hover); }
-.ibm-btn--primary:active { background: var(--cds-button-primary-active); }
+.ibm-btn--primary:hover  { background-color: var(--cds-button-primary-hover); }
+.ibm-btn--primary:active { background-color: var(--cds-button-primary-active); }
 
-.ibm-btn--ghost {
-  background: transparent;
-  color: var(--cds-link-primary);
-  border: 1px solid transparent;
-  padding: 13px var(--cds-spacing-06);
+
+/* ── SECONDARY ────────────────────────────────────────────────────────────── */
+.ibm-btn--secondary {
+  background-color: var(--cds-button-secondary);
+  color: var(--cds-text-primary);
+  /* Carbon secondary on g100 gets a subtle border */
+  box-shadow: inset 0 0 0 1px var(--cds-border-strong-01);
 }
-.ibm-btn--ghost:hover  { background: var(--cds-button-ghost-hover); }
-.ibm-btn--ghost:active { background: var(--cds-button-ghost-active); }
+.ibm-btn--secondary:hover  {
+  background-color: var(--cds-button-secondary-hover);
+  box-shadow: inset 0 0 0 1px var(--cds-border-strong-02);
+}
+.ibm-btn--secondary:active { background-color: var(--cds-button-secondary-active); }
+
+
+/* ── TERTIARY ─────────────────────────────────────────────────────────────── */
+/* Transparent background, $interactive border, $link-primary text */
+.ibm-btn--tertiary {
+  background-color: transparent;
+  color: var(--cds-link-primary);
+  box-shadow: inset 0 0 0 1px var(--cds-interactive);
+  padding: 0 63px 0 var(--cds-spacing-05);
+}
+.ibm-btn--tertiary:hover {
+  background-color: rgba(69, 137, 255, 0.12);
+  box-shadow: inset 0 0 0 1px var(--cds-link-primary);
+}
+.ibm-btn--tertiary:active {
+  background-color: rgba(69, 137, 255, 0.25);
+}
+
+
+/* ── GHOST ────────────────────────────────────────────────────────────────── */
+/* No background, no border, link color. Icon flows inline (no right-pin offset) */
+.ibm-btn--ghost {
+  background-color: transparent;
+  color: var(--cds-link-primary);
+  /* Ghost buttons do NOT have right padding offset — icon is inline */
+  padding: 0 var(--cds-spacing-05);
+  justify-content: flex-start;
+  gap: var(--cds-spacing-03);
+}
+.ibm-btn--ghost > svg {
+  /* Ghost: icon is inline, not pinned-right */
+  position: static;
+  transform: none;
+}
+.ibm-btn--ghost:hover {
+  background-color: var(--cds-button-ghost-hover);
+  color: var(--cds-link-primary-hover);
+}
+.ibm-btn--ghost:active { background-color: var(--cds-button-ghost-active); }
+
+
+/* ── DANGER ───────────────────────────────────────────────────────────────── */
+.ibm-btn--danger {
+  background-color: var(--cds-button-danger);
+  color: var(--cds-text-on-color);
+}
+.ibm-btn--danger:hover  { background-color: var(--cds-button-danger-hover); }
+.ibm-btn--danger:active { background-color: var(--cds-button-danger-active); }
+
+
+/* ── SIZE MODIFIERS ───────────────────────────────────────────────────────── */
+/* sm — 32px, used for inline controls like copy buttons */
+.ibm-btn--sm {
+  min-height: 32px;
+  font-size: 0.875rem;
+  padding: 0 39px 0 var(--cds-spacing-04);
+}
+.ibm-btn--sm > svg { right: var(--cds-spacing-04); }
+.ibm-btn--sm.ibm-btn--ghost {
+  padding: 0 var(--cds-spacing-04);
+  gap: var(--cds-spacing-02);
+}
+
+/* md — 40px */
+.ibm-btn--md {
+  min-height: 40px;
+  padding: 0 55px 0 var(--cds-spacing-05);
+}
+
+/* lg — 48px (default, defined on base) */
+/* xl — 64px, used for marketing/hero contexts */
+.ibm-btn--xl {
+  min-height: 64px;
+  font-size: 1rem;
+  padding: 0 var(--cds-spacing-08) 0 var(--cds-spacing-06);
+  align-items: flex-start;
+  padding-top: var(--cds-spacing-05);
+}
+.ibm-btn--xl > svg { top: var(--cds-spacing-05); transform: none; }
+
+/* 2xl — 80px, expressive / full-width CTA */
+.ibm-btn--2xl {
+  min-height: 80px;
+  font-size: 1rem;
+  padding: 0 var(--cds-spacing-08) 0 var(--cds-spacing-06);
+  align-items: flex-start;
+  padding-top: var(--cds-spacing-06);
+}
+.ibm-btn--2xl > svg { top: var(--cds-spacing-06); transform: none; }
+
+
+/* ── ICON-ONLY BUTTON ─────────────────────────────────────────────────────── */
+/* Used for close buttons, header actions, copy buttons */
+.ibm-btn--icon-only {
+  padding: 0;
+  min-width: 48px;
+  min-height: 48px;
+  justify-content: center;
+  align-items: center;
+}
+.ibm-btn--icon-only > svg {
+  position: static;
+  transform: none;
+}
+/* sm icon-only */
+.ibm-btn--icon-only.ibm-btn--sm {
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+}
+/* md icon-only */
+.ibm-btn--icon-only.ibm-btn--md {
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+}
 
 /* Decorative app screenshot — right side, fades into background */
 .ibm-page-header-img {
@@ -737,8 +911,9 @@ pre, code, kbd, samp {
 }
 .step-prompt .copy-btn { top: var(--cds-spacing-03); right: var(--cds-spacing-03); }
 
-/* Carbon copy button */
-.copy-btn {
+/* Carbon copy button — legacy .copy-btn + new .cds-copy-btn (phase 4) */
+.copy-btn,
+.cds-copy-btn {
   position: absolute; top: var(--cds-spacing-04); right: var(--cds-spacing-04);
   background: transparent;
   border: 1px solid var(--cds-border-strong-01);
@@ -749,9 +924,12 @@ pre, code, kbd, samp {
   cursor: pointer; min-height: 32px; min-width: 44px;
   transition: background 70ms var(--cds-motion-standard), color 70ms var(--cds-motion-standard);
 }
-.copy-btn:hover { background: var(--cds-layer-02); color: var(--cds-text-primary); }
-.copy-btn:active { background: var(--cds-border-subtle-01); }
-.copy-btn.copied {
+.copy-btn:hover,
+.cds-copy-btn:hover { background: var(--cds-layer-02); color: var(--cds-text-primary); }
+.copy-btn:active,
+.cds-copy-btn:active { background: var(--cds-border-subtle-01); }
+.copy-btn.copied,
+.cds-copy-btn.copied {
   background: rgba(66,190,101,0.12);
   border-color: rgba(66,190,101,0.45);
   color: #42be65;
@@ -929,16 +1107,11 @@ pre, code, kbd, samp {
 .ntb-panel { padding: var(--cds-spacing-07) var(--cds-spacing-07) var(--cds-spacing-06); display: none; }
 .ntb-panel.ntb-panel-active { display: block; }
 
+/* ntb-close is now .ibm-btn--ghost.ibm-btn--icon-only.ibm-btn--sm — see phase 4 */
 .ntb-close {
   position: absolute; top: var(--cds-spacing-04); right: var(--cds-spacing-04);
-  background: transparent; border: 1px solid var(--cds-border-subtle-01);
-  color: var(--cds-text-secondary); cursor: pointer;
-  width: 32px; height: 32px; border-radius: 0;
-  display: flex; align-items: center; justify-content: center; z-index: 10;
-  transition: background 70ms var(--cds-motion-standard), color 70ms var(--cds-motion-standard);
+  z-index: 10;
 }
-.ntb-close:hover { background: var(--cds-layer-02); color: var(--cds-text-primary); }
-.ntb-close svg { width: 12px; height: 12px; display: block; }
 
 /* Carbon $heading-02 */
 .ntb-panel h3 { font-size: 1.25rem; font-weight: 400; color: var(--cds-text-primary); margin-bottom: var(--cds-spacing-03); }
@@ -970,20 +1143,7 @@ pre, code, kbd, samp {
 .ntb-action-card--static:hover { border-color: var(--cds-border-subtle-01); background: var(--cds-background); }
 .ntb-action-arrow svg { width: 16px; height: 16px; display: block; }
 
-/* Carbon primary button */
-.ntb-next-btn {
-  display: flex; align-items: center; justify-content: center; gap: var(--cds-spacing-03);
-  width: 100%; padding: 13px var(--cds-spacing-06);
-  background: var(--cds-button-primary); color: #fff;
-  border: none; border-radius: 0;
-  font-size: 0.875rem; font-weight: 400;
-  font-family: var(--cds-font-family-sans);
-  cursor: pointer; min-height: 48px;
-  transition: background 70ms var(--cds-motion-standard);
-}
-.ntb-next-btn:hover  { background: #0062fe; }
-.ntb-next-btn:active { background: #0043ce; }
-.ntb-next-btn svg { width: 14px; height: 14px; }
+/* ntb-next-btn is now .ibm-btn.ibm-btn--primary — see phase 4 */
 
 .ntb-section { margin-bottom: var(--cds-spacing-05); }
 .ntb-section-label {
@@ -1114,17 +1274,7 @@ footer {
 .agenda-modal-title { font-size: 1rem; font-weight: 600; color: var(--cds-text-primary); line-height: 1.25; }
 .agenda-modal-sub   { font-size: 0.75rem; color: var(--cds-text-secondary); margin-top: 2px; }
 
-.agenda-close {
-  background: transparent;
-  border: 1px solid var(--cds-border-subtle-01);
-  color: var(--cds-text-secondary); cursor: pointer;
-  width: 32px; height: 32px; border-radius: 0;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: background 70ms var(--cds-motion-standard), color 70ms var(--cds-motion-standard);
-}
-.agenda-close:hover { background: var(--cds-layer-02); color: var(--cds-text-primary); }
-.agenda-close svg { width: 12px; height: 12px; display: block; }
+/* agenda-close is now .ibm-btn--ghost.ibm-btn--icon-only.ibm-btn--sm — see phase 4 */
 
 .agenda-body {
   overflow-y: auto; padding: var(--cds-spacing-06); flex: 1;
