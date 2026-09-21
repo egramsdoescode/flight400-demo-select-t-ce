@@ -993,12 +993,14 @@ pre, code, kbd, samp {
    list-style-type on li — both must be suppressed and replaced with a flex-based
    layout so the bullet and text share a baseline and are never clipped by the
    overflow:hidden on .cds-accordion-content-inner. */
-.cds-accordion-content-inner ul {
+.cds-accordion-content-inner ul,
+.cds-tile-detail-inner ul {
   list-style: none !important;
   padding-left: 0 !important;
   margin: 0.4rem 0 0.75rem 1.25rem;
 }
-.cds-accordion-content-inner ul li {
+.cds-accordion-content-inner ul li,
+.cds-tile-detail-inner ul li {
   list-style: none !important;
   display: flex !important;
   align-items: baseline !important;
@@ -1006,7 +1008,8 @@ pre, code, kbd, samp {
   padding-left: 0 !important;
   position: static !important;
 }
-.cds-accordion-content-inner ul li::before {
+.cds-accordion-content-inner ul li::before,
+.cds-tile-detail-inner ul li::before {
   content: "•" !important;
   position: static !important;
   display: inline !important;
@@ -1018,7 +1021,8 @@ pre, code, kbd, samp {
   top: auto !important;
   left: auto !important;
 }
-.cds-accordion-content-inner ul li::marker {
+.cds-accordion-content-inner ul li::marker,
+.cds-tile-detail-inner ul li::marker {
   content: none !important;
 }
 
